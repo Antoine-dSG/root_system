@@ -8,4 +8,6 @@ namespace RootPairing
 
 def WeylGeomRepRoots : Prop := 1=1
 def WeylGeomRepCoroots : Prop := 1=1
+
+
 end RootPairing
