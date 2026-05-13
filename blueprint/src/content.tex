@@ -13,6 +13,21 @@
         \item $I = \{(i, j, \varepsilon) | 1 \leq i \leq j \leq l \in \mathbb{Z}, \varepsilon = \pm 1\}$
         \item $\alpha : I \hookrightarrow \mathbb{Z}^l$,  $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} A_le_k\right)$ (where $A_l$ is the Cartan Matrix of $A_l$)
         \item $\alpha^{\vee} : I \hookrightarrow \left(\mathbb{Z}^l\right)^*$, $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} e_k^{\top}\right)$ 
-        \item $s: I \to \text{Perm}(I)$ where
+        \item $s: I \to \text{Perm}(I)$ where $s(i, j, 1) = s(i, j, -1)$, $s(i, j, \varepsilon)(k, l, 1) = (p, q, \eta)$ means that $s(i, j, \varepsilon)(k, l, -1) = (p, q, -\eta)$, and
+            \[
+            s(i, j, 1)(k, l, 1) =
+            \begin{cases}
+                (k, l, -1) & \text{if } (i, j) = (k, l) \\
+                (l, j, -1) & \text{if } i = k, j > l \\
+                (j, l, 1) & \text{if } i = k, j < l \\
+                (i, k, -1) & \text{if } i < k, j = l \\
+                (k, i, 1) & \text{if } i > k, j = l \\
+                (k, j, 1) & \text{if } i = l+1 \\
+                (i, l, 1) & \text{if } k = j+1 \\
+                (k, l, 1) & \text{otherwise}
+            \end{cases}
+            \]
     \end{enumerate}
 \end{theorem}
+\begin{proof}
+\end{proof}
