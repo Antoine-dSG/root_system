@@ -72,7 +72,7 @@ Consider the following four mutually exclusive cases:
     \begin{enumerate}
         \item $\mathcal{L}$ is the dot product on $\mathbb{Z}^l \times \left(\mathbb{Z}^l\right)^*$
         \item $I = \{\text{signed intervals on the set }\{1, ..., n\}\} = I^+ \cup I^-$
-        \item $s: I \to \text{Perm}(I)$ where for $J \in I$, $s_J=s_{-J}$, $s_J(=K) = -s_J(K)$, defined as $s_J(K)=$
+        \item $s: I \to \text{Perm}(I)$ where for $J \in I$, $s_J=s_{-J}$, $s_J(-K) = -s_J(K)$, defined as $s_J(K)=$
             \[
             \begin{cases}
                 J \cup K & \text{if } J \cap K = \emptyset \land J \cup K \in I \\
@@ -83,6 +83,28 @@ Consider the following four mutually exclusive cases:
                 -(J\setminus K) & \text{if } J \cap K \neq \emptyset \land K \subseteq J \land J \setminus K \in I \\
                 K & \text{if } J \cap K \neq \emptyset \land K \subseteq J \land J \setminus K \notin I \\
                 K & \text{if } J \cap K \neq \emptyset \land K \not\subseteq J \land J \not\subset K\\
+            \end{cases}
+            \]
+    \end{enumerate}
+
+    Equivalently (for use in Lean), 
+    \begin{enumerate}
+        \item $\mathcal{L}$ is the dot product on $\mathbb{Z}^l \times \left(\mathbb{Z}^l\right)^*$
+        \item $I = \{(i, j, \varepsilon) | 1 \leq i \leq j \leq l \in \mathbb{Z}, \varepsilon = \pm 1\}$
+        \item $\alpha : I \hookrightarrow \mathbb{Z}^l$,  $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} A_le_k\right)$ (where $A_l$ is the Cartan Matrix of $A_l$)
+        \item $\alpha^{\vee} : I \hookrightarrow \left(\mathbb{Z}^l\right)^*$, $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} e_k^{\top}\right)$ 
+        \item $s: I \to \text{Perm}(I)$ where $s(i, j, 1) = s(i, j, -1)$, $s(i, j, \varepsilon)(k, l, 1) = (p, q, \eta)$ means that $s(i, j, \varepsilon)(k, l, -1) = (p, q, -\eta)$, and
+            \[
+            s(i, j, 1)(k, l, 1) =
+            \begin{cases}
+                (k, l, -1) & \text{if } (i, j) = (k, l) \\
+                (l+1, j, -1) & \text{if } i = k, j > l \\
+                (j+1, l, 1) & \text{if } i = k, j < l \\
+                (i, k-1, -1) & \text{if } i < k, j = l \\
+                (k, i-1, 1) & \text{if } i > k, j = l \\
+                (k, j, 1) & \text{if } i = l+1 \\
+                (i, l, 1) & \text{if } k = j+1 \\
+                (k, l, 1) & \text{otherwise}
             \end{cases}
             \]
     \end{enumerate}
