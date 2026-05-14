@@ -99,9 +99,68 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
     $s_J$ and the four cases above. Then $s_J^{-1} = s_J$, and our claim is proved.
 \end{proof}
 
+\begin{lemma}
+    \label{lemma:alpha_is_injective}
+    $\alpha: I_n \to \mathbb{Z}^n$ is injective, i.e. $\alpha_{J} = \alpha_{K} \implies J = K$
+\end{lemma}
+\begin{proof}
+    Write 
+    \begin{align*}
+        \alpha_J &= \varepsilon_J (\sum_{j\in +J}Ae_j), \varepsilon_J \in \{-1, 1\}\\
+        \alpha_K &= \varepsilon_K (\sum_{k\in +K}Ae_k), \varepsilon_K \in \{-1, 1\}
+    \end{align*}
 
+    Then $\alpha_J = \alpha_K \implies 
+    \varepsilon_J (\sum_{j\in +J}Ae_j) - \varepsilon_K (\sum_{k\in +K}Ae_k) = 0$. This reduces to
+    \begin{equation*}
+        \sum_{k \in +J \cup +K}c_k Ae_k = 0
+    \end{equation*}
+    with the following cases:
+    \[ 
+        c_k = 
+        \begin{cases}
+            \varepsilon_J & \text{if } k \in +J, k \notin +K\\
+            -\varepsilon_K & \text{if } k \notin +J, k \in +K\\
+            \varepsilon_J - \varepsilon_K & \text{if } k \in +J, k \in +K\\
+            0 & \text{if } k \notin +J, k \notin +K
+        \end{cases}
+    \]
+    $Ae_k$ is clearly linearly independent, so $\forall k\in +J \cup +K, c_k=0$. 
+    Therefore, $\forall k\in +J \cup +K$, k must be in both $+J$ and $+K$. 
+    In this case $\varepsilon_J - \varepsilon_K = 0$, so $\varepsilon_J = \varepsilon_K$, which means $J$ = $K$.
+\end{proof}
 
+\begin{lemma}
+    \label{lemma:alpha_dual_is_injective}
+    $\alpha^\vee$ is injective, i.e. $\alpha^\vee_J = \alpha^\vee_K \implies J = K$
+\end{lemma}
+\begin{proof}
+    Clearly, the set of $e_i^*$ is linearly independent, so the same proof as Lemma \ref{lemma:alpha_is_injective} holds.
+\end{proof}
 
+\begin{lemma}
+    \label{lemma:alpha_dual_alpha_is_two}
+    $\forall J \in I_n, (\alpha^\vee_J, \alpha_J)=2$
+\end{lemma}
+\begin{proof}
+    Write 
+    \begin{align*}
+        \alpha_J &= \varepsilon_J (\sum_{j\in +J}Ae_j), \varepsilon_J \in \{-1, 1\}\\
+    \end{align*}
+
+    Then
+    \begin{align*}
+        (\alpha^\vee_J, \alpha_J) &= 
+        (\varepsilon_J (\sum_{j\in +J}e_j^*), \varepsilon_J (\sum_{k\in +J}Ae_j))\\
+        &= \sum_{j\in +J}\sum_{k\in +J}(e_j^*, Ae_k)\\
+        &= \sum_{j\in +J}\sum_{k\in +J}A_{j, k}
+    \end{align*}
+
+    For length $L= |J|$ of the interval, there are $L$ diagonal terms in the sum, 
+    $2(L-1)$ pairs of diagonal-adjacent indices, each contributing $2$ and $-1$ respectively to the sum
+    (by the definition of the cartan matrix $A$ of type $A_n$).
+    Therefore, $\sum_{j\in +J}\sum_{k\in +J}A_{j, k} = 2L - 2(L-1) = 2$
+\end{proof}
 
 \begin{theorem}\label{thm:root_pairing_of_type_A}
     \uses{lemma:s_J_are_permutations,def:root_pairing}
