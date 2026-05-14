@@ -40,8 +40,48 @@ def α {n : ℕ} (J : SignedInterval n) [NeZero n] : Zn n :=
 def α_dual {n : ℕ} (J : SignedInterval n) [NeZero n] : Zn_dual n :=
   J.sign • Finset.sum (Finset.Icc J.i J.j) (fun k => e_transpose k)
 
-def s {n : ℕ} (J: SignedInterval n) (K: SignedInterval n) : SignedInterval n :=
-  if J.i = K.i ∧ J.j = K.j then (SignedInterval n).mk J.i J.j J.hij false
-  else SignedInterval n J.i J.j J.hij true
+def s {n : ℕ} (J : SignedInterval n) (K : SignedInterval n) [NeZero n] : SignedInterval n :=
+  if h₀ : J.i = K.i ∧ J.j = K.j then
+    { i := J.i, j := J.j, hij := J.hij, ε := false }
+  else if h₁ : (J.i : ℕ) = (K.j : ℕ) + 1 then
+    { i := K.i
+      j := J.j
+      hij := by
+        have hKi : (K.i : ℕ) ≤ K.j := Fin.le_iff_val_le_val.mp K.hij
+        have hJi : (J.i : ℕ) ≤ J.j := Fin.le_iff_val_le_val.mp J.hij
+        exact Fin.le_iff_val_le_val.mpr (by omega)
+      ε := true }
+  else if h₂ : (K.i : ℕ) = (J.j : ℕ) + 1 then
+    { i := J.i
+      j := K.j
+      hij := by
+        have hJi : (J.i : ℕ) ≤ J.j := Fin.le_iff_val_le_val.mp J.hij
+        have hKj : (K.i : ℕ) ≤ K.j := Fin.le_iff_val_le_val.mp K.hij
+        exact Fin.le_iff_val_le_val.mpr (by omega)
+      ε := true }
+  else if h₃ : J.i = K.i ∧ J.j > K.j then
+    { i := K.i
+      j := J.j
+      hij := by simpa [h₃.1] using J.hij
+      ε := false }
+  else if h₄ : J.i = K.i ∧ J.j < K.j then
+    { i := J.i
+      j := K.j
+      hij := by simpa [h₄.1] using K.hij
+      ε := true }
+  else if h₅ : J.i < K.i ∧ J.j = K.j then
+    { i := J.i
+      j := J.j
+      hij := by
+        exact J.hij
+      ε := false }
+  else if h₆ : J.i > K.i ∧ J.j = K.j then
+    { i := K.i
+      j := K.j
+      hij := by
+        exact K.hij
+      ε := true }
+  else
+    { i := J.i, j := J.j, hij := J.hij, ε := true }
 
 -- def An (n : ℕ) [NeZero n] : RootPairing (SignedInterval n) ℤ (Zn n) (Zn_dual n) where
