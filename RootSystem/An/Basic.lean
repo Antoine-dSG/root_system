@@ -84,4 +84,37 @@ def s {n : ℕ} (J : SignedInterval n) (K : SignedInterval n) [NeZero n] : Signe
   else
     { i := J.i, j := J.j, hij := J.hij, ε := true }
 
--- def An (n : ℕ) [NeZero n] : RootPairing (SignedInterval n) ℤ (Zn n) (Zn_dual n) where
+noncomputable abbrev Zn_pairing (n : ℕ) [NeZero n] : Zn n →ₗ[ℤ] Zn_dual n →ₗ[ℤ] ℤ :=
+  Module.Dual.eval ℤ (Zn n)
+
+noncomputable def An (n : ℕ) [NeZero n] : RootPairing (SignedInterval n) ℤ (Zn n) (Zn_dual n) where
+  toLinearMap := Zn_pairing n
+  root :=
+    { toFun := fun J => α (n := n) J
+      inj' := by
+        intro J K h
+        sorry
+    }
+  coroot :=
+    { toFun := fun J => α_dual (n := n) J
+      inj' := by
+        intro J K h
+        sorry
+    }
+  root_coroot_two := by
+    intro J
+    simp[α, α_dual]
+    sorry
+
+  reflectionPerm := fun J =>
+    { toFun := fun K => s (n := n) J K
+      invFun := fun K => s (n := n) J K
+      left_inv := by
+        intro K
+        simp only [s, gt_iff_lt, dite_eq_ite]
+        sorry
+      right_inv := by
+        intro K
+        sorry }
+  reflectionPerm_root := sorry
+  reflectionPerm_coroot := sorry
