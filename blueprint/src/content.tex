@@ -138,32 +138,32 @@ We first define $s_J(K)$ for $J,K \in I_n$. Set $L = (J \cup K) \backslash (J \c
 It is clear that $J,K,L$ satisfy exactly one of the following four conditions.
 \begin{description}
     \item[{\bf R1.}] $L = \emptyset$.
-    \item[{\bf R2.}] $L \in I_n$ and $K \subset J$, and
-    \item[{\bf R3.}] $L \in I_n$ and $K \not\subseteq J$.
+    \item[{\bf R2.}] $L \in I_n$ and $K \subset J$,
+    \item[{\bf R3.}] $L \in I_n$ and $K \not\subseteq J$,
     \item[{\bf R4.}] $L \not\in I_n \cup \{\emptyset\}$.
 \end{description}
 Then,
 \begin{equation}\label{eq:s_J_definition}
 s_J(K) = \begin{cases}
-    -K  & \text{in Case {\bf R1},}  \\
-    -L & \text{in Case {\bf R2},}  \\
-    L & \text{in Case {\bf R3}.}  \\
-    K & \text{in Case {\bf R4},}  \\
+    -K  & \text{in case }{\bf R1},  \\
+    -L & \text{in case }{\bf R2},  \\
+    L & \text{in case }{\bf R3},  \\
+    K & \text{in case }{\bf R4}.
 \end{cases}
 \end{equation}
 
-If $J = [i,j]$ and $K = [k,l]$, then \eqref{eq:s_J_definition} can be rewritten as
+If $J = [i,j]$ and $K = [k,l]$, then (\ref{eq:s_J_definition}) can be rewritten as
 \begin{equation}\label{eq:s_J_interval_definition}
-            s_{[i, j]}[k, l] =
+    s_{[i, j]}[k, l] =
             \begin{cases}
-                -[k,l]  & \text{if } (i, j) = (k, l) \\
-                -[l+1,j] & \text{if } i = k, j > l \\
-                [j+1, l] & \text{if } i = k, j < l \\
-                -[i, k-1] & \text{if } i < k, j = l \\
-                [k, i-1] & \text{if } i > k, j = l \\
-                [k, j] & \text{if } i = l+1 \\
-                [i, l] & \text{if } k = j+1 \\
-                [k, l] & \text{otherwise}.
+                -[k,l]  & {\rm if }\; (i, j) = (k, l) \\
+                -[l+1,j] & {\rm if }\; i = k, j > l \\
+                [j+1, l] & {\rm if }\; i = k, j < l \\
+                -[i, k-1] & {\rm if }\; i < k, j = l \\
+                [k, i-1] & {\rm if }\; i > k, j = l \\
+                [k, j] & {\rm if }\; i = l+1 \\
+                [i, l] & {\rm if }\; k = j+1 \\
+                [k, l] & {\rm otherwise.}
             \end{cases}
 \end{equation}
 
