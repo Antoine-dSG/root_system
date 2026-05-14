@@ -63,6 +63,7 @@ It is clear that $J,K,L$ satisfy exactly one of the following four conditions.
 \end{description}
 Then, 
 \begin{equation}\label{eq:s_J_definition}
+    \lean{s}
 s_J(K) = \begin{cases}
     -K  & \text{in Case {\bf R1},}  \\
     -L & \text{in Case {\bf R2},}  \\
@@ -70,6 +71,21 @@ s_J(K) = \begin{cases}
     K & \text{in Case {\bf R4},}  \\
 \end{cases}
 \end{equation}
+
+If $J = [i,j]$ and $K = [k,l]$, then \eqref{eq:s_J_definition} can be rewritten as
+\[
+            s_{[i, j]}[k, l] =
+            \begin{cases}
+                -[k,l]  & \text{if } (i, j) = (k, l) \\
+                -[l+1,j] & \text{if } i = k, j > l \\
+                [j+1, l] & \text{if } i = k, j < l \\
+                -[i, k-1] & \text{if } i < k, j = l \\
+                [k, i-1] & \text{if } i > k, j = l \\
+                [k, j] & \text{if } i = l+1 \\
+                [i, l] & \text{if } k = j+1 \\
+                [k, l] & \text{otherwise}.
+            \end{cases}
+\]
 
 
 We extend $s_J$ to $I_n$ by setting $s_{J}(-K) = -s_J(K)$ for all $K \in I_n^+$. 
@@ -88,46 +104,10 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
 
 
 
-\begin{theorem}
-    The 8-tuple $\left(\mathbb{Z}, \mathbb{Z}^l, \left(\mathbb{Z}^l\right)^*, \mathcal{L}, I, \alpha, \alpha^{\vee}, s\right)$ is a root pairing of $A_l$, where:
-    \begin{enumerate}
-        \item $\mathcal{L}$ is the dot product on $\mathbb{Z}^l \times \left(\mathbb{Z}^l\right)^*$
-        \item $I = \{\text{signed intervals on the set }\{1, ..., n\}\} = I^+ \cup I^-$
-        \item $s: I \to \text{Perm}(I)$ where for $J \in I$, $s_J=s_{-J}$, $s_J(-K) = -s_J(K)$, defined as $s_J(K)=$
-            \[
-            \begin{cases}
-                J \cup K & \text{if } J \cap K = \emptyset \land J \cup K \in I \\
-                K & \text{if } J \cap K = \emptyset \land J \cup K \notin I \\
-                K \setminus J & \text{if } J \cap K \neq \emptyset \land J \subset K \land K \setminus J \in I \\
-                K & \text{if } J \cap K \neq \emptyset \land J \subset K \land K \setminus J \notin I \\
-                -K & \text{if } J \cap K \neq \emptyset \land K \subseteq J \land J \setminus K = \emptyset \\
-                -(J\setminus K) & \text{if } J \cap K \neq \emptyset \land K \subseteq J \land J \setminus K \in I \\
-                K & \text{if } J \cap K \neq \emptyset \land K \subseteq J \land J \setminus K \notin I \\
-                K & \text{if } J \cap K \neq \emptyset \land K \not\subseteq J \land J \not\subset K\\
-            \end{cases}
-            \]
-    \end{enumerate}
-
-    Equivalently (for use in Lean), 
-    \begin{enumerate}
-        \item $I = \{(i, j, \varepsilon) | 1 \leq i \leq j \leq l \in \mathbb{Z}, \varepsilon = \pm 1\}$
-        \item $\alpha : I \hookrightarrow \mathbb{Z}^l$,  $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} A_le_k\right)$ (where $A_l$ is the Cartan Matrix of $A_l$)
-        \item $\alpha^{\vee} : I \hookrightarrow \left(\mathbb{Z}^l\right)^*$, $(i, j, \varepsilon) \mapsto \varepsilon\left(\sum_{k=i}^{j} e_k^{\top}\right)$ 
-        \item $s: I \to \text{Perm}(I)$ where $s(i, j, 1) = s(i, j, -1)$, $s(i, j, \varepsilon)(k, l, 1) = (p, q, \eta)$ means that $s(i, j, \varepsilon)(k, l, -1) = (p, q, -\eta)$, and
-            \[
-            s(i, j, 1)(k, l, 1) =
-            \begin{cases}
-                (k, l, -1) & \text{if } (i, j) = (k, l) \\
-                (l+1, j, -1) & \text{if } i = k, j > l \\
-                (j+1, l, 1) & \text{if } i = k, j < l \\
-                (i, k-1, -1) & \text{if } i < k, j = l \\
-                (k, i-1, 1) & \text{if } i > k, j = l \\
-                (k, j, 1) & \text{if } i = l+1 \\
-                (i, l, 1) & \text{if } k = j+1 \\
-                (k, l, 1) & \text{otherwise}
-            \end{cases}
-            \]
-    \end{enumerate}
+\begin{theorem}\label{thm:root_pairing_of_type_A}
+    \uses{lemma:s_J_are_permutations,eq:s_J_definition}
+    The 8-tuple $\left(\mathbb{Z}, \mathbb{Z}^l, \left(\mathbb{Z}^l\right)^*, (\cdot , \cdot), I_n, \alpha, \alpha^{\vee}, s\right)$ 
+    is a root pairing.
 \end{theorem}
 \begin{proof}
 \end{proof}
