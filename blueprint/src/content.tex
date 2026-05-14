@@ -72,7 +72,7 @@ s_J(K) = \begin{cases}
 \end{equation}
 
 If $J = [i,j]$ and $K = [k,l]$, then \eqref{eq:s_J_definition} can be rewritten as
-\begin{equation}
+\begin{equation}\label{eq:s_J_interval_definition}
             s_{[i, j]}[k, l] =
             \begin{cases}
                 -[k,l]  & \text{if } (i, j) = (k, l) \\
@@ -187,7 +187,39 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
     For all $J, K \in I_n$, $\alpha_{s_J(K)}=\alpha_K - (\alpha^\vee_K, \alpha_J)\alpha_J$
 \end{lemma}
 \begin{proof}
-    
+    Let $J = \text{sign}(J)J$, where $J_+ = [i, j]$, $K = \text{sign}(K)K_+$, where $K_+ = [k, l]$.
+    Then,
+    \begin{align*}
+        (\alpha^\vee_K, \alpha_J) &= \left(\sum_{u=k}^{l}e_u^*, \sum_{v=i}^{j}Ae_v\right)\\
+        &= \sum_{u=k}^{l}\sum_{v=i}^{j}(e_u^*, Ae_v)\\
+        &= \sum_{u=k}^{l}\sum_{v=i}^{j}A_{uv}\\
+        &= 2(\text{\# of pairs }u = v) - (\text{\# of pairs }v = u+1) - (\text{\# of pairs }v = u-1)
+    \end{align*}
+    by the definition of $A$. Then there are three cases:
+    \begin{itemize} 
+        \item[{\bf C1.}] $u = v \implies v \in [i, j] \cap [k, l] \implies (\text{\# of pairs }u = v) = |[i, j] \cap [k, l]| =: L$
+        \item[{\bf C2.}] $u = v+1 \implies v \in [i, j] \cap [k-1, l-1] \implies (\text{\# of pairs }u = v+1) = 
+        L - \delta_{i, k} - + \delta_{i, l+1}$, and 
+        \item[{\bf C3.}] $u = v-1 \implies v \in [i, j] \cap [k+1, l+1] \implies (\text{\# of pairs }u = v-1) = 
+        L - \delta_{j, l} + \delta_{j, k-1}$.
+    \end{itemize}
+    Therefore
+    \begin{align*}
+        (\alpha^\vee_K, \alpha_J) &= \left(\sum_{u=k}^{l}e_u^*, \sum_{v=i}^{j}Ae_v\right)\\
+        &= 2L - (L - \delta_{i, k} - \delta_{j, l} + \delta_{i, l+1}) - (L - \delta_{i, k} - \delta_{j, l} + \delta_{j, k-1})\\
+        &= \delta_{i, k} + \delta_{j, l} - \delta_{i, l+1} - \delta_{j, k-1}
+    \end{align*}
+    In particular, the cases for $(\alpha^\vee_K, \alpha_J)$ are as follows:
+    \[
+    \begin{cases*}
+        2 & \text{if } i = k, j = l\\
+        1 & \text{if } i \neq k, j = l \lor 2 i = k, j \neq l\\
+        -1 & \text{if } i = l+1 \lor k=j+1\\
+        0 & \text{otherwise }
+    \end{cases*}
+    \]
+    Applying these cases to the formula $\alpha_K - (\alpha^\vee_K, \alpha_J)\alpha_J$ (as well as the cases of $\text{sign}(J)$ and $\text{sign}(K)$), 
+    it can be easily verified (case-by-case) that they are equivalent to $\alpha_{s_J(K)}$ using the definition \eqref{eq:s_J_interval_definition}.
 \end{proof}
 
 \begin{lemma}
