@@ -40,8 +40,8 @@ def α {n : ℕ} (J : SignedInterval n) [NeZero n] : Zn n :=
 def α_dual {n : ℕ} (J : SignedInterval n) [NeZero n] : Zn_dual n :=
   J.sign • Finset.sum (Finset.Icc J.i J.j) (fun k => e_transpose k)
 
-def s {n : ℕ} (J: SignedInterval n) (K: SignedInterval n) : SignedInterval n :=
-  if J.i = K.i ∧ J.j = K.j then (SignedInterval n).mk J.i J.j J.hij false
-  else SignedInterval n J.i J.j J.hij true
+--def s {n : ℕ} (J: SignedInterval n) (K: SignedInterval n) : SignedInterval n :=
+--  if J.i = K.i ∧ J.j = K.j then (SignedInterval n).mk J.i J.j J.hij false
+--  else SignedInterval n J.i J.j J.hij true
 
 -- def An (n : ℕ) [NeZero n] : RootPairing (SignedInterval n) ℤ (Zn n) (Zn_dual n) where
