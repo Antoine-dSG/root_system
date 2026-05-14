@@ -13,7 +13,7 @@ $M \to \text{Hom}_R(N,R)$ and $N \to \text{Hom}_R(M,R)$ are isomorphisms of $R$-
 
 If $I$ is a set, denote by $\text{Perm}(I)$ the group of permutations of $I$. 
 
-\begin{definition}
+\begin{definition}\label{def:root_pairing}
     A {\it root pairing} is a tuple $(R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$ where $(R,M,N,\mathcal{L})$ is a perfect pairing, 
     $I$ is a set, $\alpha: I \to M, i \mapsto \alpha_i$, $\alpha^{\vee}: I \to N, i \mapsto \alpha_i^{\vee}$, and 
     $s: I \to \text{Perm}(I), i \mapsto s_i$, with the conditions that 
@@ -52,8 +52,7 @@ Define
     &\alpha^{\vee}: I_n \to (\mathbb{Z}^n)^*, & \quad \forall J \in I_n^+, \;\; \alpha^{\vee}_{\pm J} = \pm(\sum_{j \in J} e_j^*).
 \end{align*}
 
-Finally, define $s: I_n^+ \to \text{Perm}(I_n)$ as follows. Fix $J,K \in I_n^+$. It is clear that either $J = K$, 
-$J \subset K$, $K \subset J$, or  and set $L = (J \cup K) \backslash (J \cap K)$. 
+Finally, define $s: I_n^+ \to \text{Perm}(I_n)$ as follows. Fix $J,K \in I_n^+$ and set $L = (J \cup K) \backslash (J \cap K)$. 
 It is clear that $J,K,L$ satisfy exactly one of the following four conditions.
 \begin{description} 
     \item[{\bf R1.}] $L = \emptyset$.
@@ -63,7 +62,6 @@ It is clear that $J,K,L$ satisfy exactly one of the following four conditions.
 \end{description}
 Then, 
 \begin{equation}\label{eq:s_J_definition}
-    \lean{s}
 s_J(K) = \begin{cases}
     -K  & \text{in Case {\bf R1},}  \\
     -L & \text{in Case {\bf R2},}  \\
@@ -73,7 +71,7 @@ s_J(K) = \begin{cases}
 \end{equation}
 
 If $J = [i,j]$ and $K = [k,l]$, then \eqref{eq:s_J_definition} can be rewritten as
-\[
+\begin{equation}
             s_{[i, j]}[k, l] =
             \begin{cases}
                 -[k,l]  & \text{if } (i, j) = (k, l) \\
@@ -85,14 +83,15 @@ If $J = [i,j]$ and $K = [k,l]$, then \eqref{eq:s_J_definition} can be rewritten 
                 [i, l] & \text{if } k = j+1 \\
                 [k, l] & \text{otherwise}.
             \end{cases}
-\]
+\end{equation}
 
 
 We extend $s_J$ to $I_n$ by setting $s_{J}(-K) = -s_J(K)$ for all $K \in I_n^+$. 
 We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$. 
 
-\begin{lemma}\label{lemma:s_J_are_permutations}
-    \uses{eq:s_J_definition}
+\begin{lemma}
+    \label{lemma:s_J_are_permutations}
+    \lean{s}
     For all $J$, we have $s_J \in {\rm Perm}(I_n)$.
 \end{lemma}
 \begin{proof}
@@ -105,7 +104,7 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
 
 
 \begin{theorem}\label{thm:root_pairing_of_type_A}
-    \uses{lemma:s_J_are_permutations,eq:s_J_definition}
+    \uses{lemma:s_J_are_permutations,def:root_pairing}
     The 8-tuple $\left(\mathbb{Z}, \mathbb{Z}^l, \left(\mathbb{Z}^l\right)^*, (\cdot , \cdot), I_n, \alpha, \alpha^{\vee}, s\right)$ 
     is a root pairing.
 \end{theorem}
