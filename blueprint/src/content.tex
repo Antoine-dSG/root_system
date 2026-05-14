@@ -5,6 +5,68 @@
 % If you want to split the blueprint content into several files then
 % the current file can be a simple sequence of \input. Otherwise It
 % can start with a \section or \chapter for instance.
+\section{Root pairings}
+\subsection{Definitions}
+Recall that a {\it perfect pairing} is a quadruple $(R,M,N,\mathcal{L})$ where $R$ is a ring, $M$ and $N$ are $R$-modules, 
+and $\mathcal{L}: M \times N \to R$ is a bilinear map such that the induced maps 
+$M \to \text{Hom}_R(N,R)$ and $N \to \text{Hom}_R(M,R)$ are isomorphisms of $R$-modules. 
+
+If $I$ is a set, denote by $\text{Perm}(I)$ the group of permutations of $I$. 
+
+\begin{definition}
+    A {\it root pairing} is a tuple $(R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$ where $(R,M,N,\mathcal{L})$ is a perfect pairing, 
+    $I$ is a set, $\alpha: I \to M, i \mapsto \alpha_i$, $\alpha^{\vee}: I \to N, i \mapsto \alpha_i^{\vee}$, and 
+    $s: I \to \text{Perm}(I), i \mapsto s_i$, with the conditions that 
+\begin{enumerate}
+    \item $\alpha, \alpha^{\vee}$ are injective,
+    \item For all $i \in I$, $\mathcal{L}(\alpha_i, \alpha^{\vee}_i) = 2$,
+    \item For all $i,j \in I$, we have 
+\begin{align*}
+    \alpha_{s_i(j)} &= \alpha_j - \mathcal{L}(\alpha_j, \alpha_i^{\vee})\alpha_i, \\
+    \alpha_{s_i(j)}^{\vee} &= \alpha_j^{\vee} - \mathcal{L}(\alpha_i, \alpha_j^{\vee})\alpha_i^{\vee}.
+\end{align*}
+\end{enumerate}
+\end{definition}
+
+
+\subsection{Root pairing of type A}
+Consider the perfect pairing $(R,M,N,\mathcal{L}) = (\mathbb{Z}, \mathbb{Z}^n, (\mathbb{Z}^n)^*, (\cdot , \cdot))$ where $(\cdot , \cdot)$ is the 
+canonical pairing between $\mathbb{Z}^n$ and its algebraic dual $(\mathbb{Z}^n)^* := {\rm Hom}_{\mathbb{Z}}(\mathbb{Z}^n, \mathbb{Z})$, i.e. 
+the dot product. 
+
+We denote by $e_1, ..., e_n$ the standard basis of $\mathbb{Z}^n$ and by $e_1^*, ..., e_n^*$ the dual basis of $(\mathbb{Z}^n)^*$.
+
+Write $[1,n] = \{1, ..., n\}$. An {\it interval} in $[1,n]$ is a subset of the form $[i,j] \stackrel{\text{denotes}}{=}\{i, i+1, ..., j\}$ 
+for some $1 \leq i \leq j \leq n$. We denote by $I_n$ the set of intervals in $[1,n]$. Write $[i] := [i,i]$ for $1 \leq i \leq n$. 
+
+A {\it signed interval} in $[1,n]$ is an element of $I_n := I_n \times \{1,-1\}. $ We denote by $I_n^+$ the set of signed intervals of the 
+form $(J,1)$ and by $I_n^-$ the set of signed intervals of the form $(J,-1)$. It is clear that $I_n = I_n^+ \sqcup I_n^-$. 
+Throughout the rest of this file, we write $J$ for the signed interval $(J,1)$ and $-J$ for $(J,-1)$.
+
+Let $A = (a_{i,j})$ be the Cartan matrix of type $A_n$ defined by $a_{i,i} = 2$ for all $i \in [1,n]$, 
+$a_{i,j} = -1$ if $|i-j|=1$, and $a_{i,j} = 0$ otherwise. 
+
+Define 
+\begin{align*}
+    &\alpha: I_n \to \mathbb{Z}^n, & \quad \forall J \in I_n^+, \;\; \alpha_{\pm J} = \pm(\sum_{j \in J} Ae_j), \\
+    &\alpha^{\vee}: I_n \to (\mathbb{Z}^n)^*, & \quad \forall J \in I_n^+, \;\; \alpha^{\vee}_{\pm J} = \pm(\sum_{j \in J} e_j^*).
+\end{align*}
+
+Finally, define $s: I_n \to \text{Perm}(I_n)$ as follows. 
+
+Fix $J \in I_n^+$. If $K \in I_n^-$ then $s_J(K) = -s_J(-K)$. Thus, it suffices to define $s_J(K)$ for $K \in I_n^+$. 
+Consider the following four mutually exclusive cases:
+\begin{description} 
+    \item 
+    \item 
+    \item 
+    \item 
+\end{description}
+
+
+
+
+
 \begin{theorem}
     The 8-tuple $\left(\mathbb{Z}, \mathbb{Z}^l, \left(\mathbb{Z}^l\right)^*, \mathcal{L}, I, \alpha, \alpha^{\vee}, s\right)$ is a root pairing of $A_l$, where:
     \begin{enumerate}
