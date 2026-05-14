@@ -1,2 +1,5 @@
 /.lake
 /blueprint/src/print.*
+!/blueprint/src/print.tex
+/blueprint/src/web.*
+!/blueprint/src/web.tex
