@@ -52,16 +52,36 @@ Define
     &\alpha^{\vee}: I_n \to (\mathbb{Z}^n)^*, & \quad \forall J \in I_n^+, \;\; \alpha^{\vee}_{\pm J} = \pm(\sum_{j \in J} e_j^*).
 \end{align*}
 
-Finally, define $s: I_n \to \text{Perm}(I_n)$ as follows. 
-
-Fix $J \in I_n^+$. If $K \in I_n^-$ then $s_J(K) = -s_J(-K)$. Thus, it suffices to define $s_J(K)$ for $K \in I_n^+$. 
-Consider the following four mutually exclusive cases:
+Finally, define $s: I_n^+ \to \text{Perm}(I_n)$ as follows. Fix $J,K \in I_n^+$, and set $L = (J \cup K) \backslash (J \cap K)$. 
+Then $J,K,L$ satisfy exactly one of the following four conditions.
 \begin{description} 
-    \item 
-    \item 
-    \item 
-    \item 
+    \item[{\bf R1.}] $J = K$.
+    \item[{\bf R2.}] $J \subset K$ and $L \in I_n$.
+    \item[{\bf R3.}] $K \subset J$ and $L \in I_n$.
+    \item[{\bf R4.}] $L \not\in I_n$. 
 \end{description}
+Then, 
+\begin{equation}\label{eq:s_J_definition}
+s_J(K) = \begin{cases}
+    -K & \text{in Case {\bf R1},}  \\
+    L  & \text{in Case {\bf R2},}  \\
+    -L & \text{in Case {\bf R3},}  \\
+    K & \text{in Case {\bf R4}.}  \\
+\end{cases}
+\end{equation}
+
+
+We extend $s_J$ to $I_n$ by setting $s_{J}(-K) = -s_J(K)$ for all $K \in I_n^+$. We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ 
+for all $J \in I_n^+$. 
+
+\begin{lemma}\label{lemma:s_J_are_permutations}
+    \uses{eq:s_J_definition}
+    For all $J$, we have $s_J \in {\rm Perm}(I_n)$.
+\end{lemma}
+\begin{proof}
+    Fix $J \in I_n$. We prove that $s_J^2 = \text{id}$ by a straightforward case-by-case check using the definition of 
+    $s_J$ and the four cases above. The claim then follows by noting that $s_J^{-1} = s_J$.
+\end{proof}
 
 
 
