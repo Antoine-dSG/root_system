@@ -1,3 +1,4 @@
+% !TEX root = print.tex
 % In this file you should put the actual content of the blueprint.
 % It will be used both by the web and the print version.
 % It should *not* include the \begin{document}
@@ -125,7 +126,26 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
             0 & \text{if } k \notin +J, k \notin +K
         \end{cases}
     \]
-    $Ae_k$ is clearly linearly independent, so $\forall k\in +J \cup +K, c_k=0$. 
+
+    \begin{sublemma}
+        $A_n$ is invertible for all $n \in \mathbb{N}$, i.e. $\text{det}(A_n) \neq 0$
+    \end{sublemma}
+    \begin{proof}
+        Since $A_n$ is a tridiagonal matrix with diagonal entries $= 2$ and off-diagonal entries $= -1$,
+        $\text{det}(A_n) = 2\text{det}(A_{n-1})-\text{det}(A_{n-2})$. In particular, $\text{det}(A_n)
+        - \text{det}(A_{n-1}) = \text{det}(A_{n-1})-\text{det}(A_{n-2})$ for all $n$. $\text{det}(A_1)=2$ 
+        and $\text{det}(A_2)=3$, so $A_{n}=n+1$ for all $n$, which is clearly $\neq 0$.
+    \end{proof}
+
+    \begin{subcorollary}
+        $A_n e_k$ is linearly independent $\forall k \leq n \in \mathbb{N}$. 
+    \end{subcorollary}
+    \begin{proof}
+        It is known that a set of linearly independent vectors multiplied by an invertible matrix is still 
+        linearly independent.
+    \end{proof}
+
+    By the above lemma, $Ae_k$ is linearly independent, so $\forall k\in +J \cup +K, c_k=0$. 
     Therefore, $\forall k\in +J \cup +K$, k must be in both $+J$ and $+K$. 
     In this case $\varepsilon_J - \varepsilon_K = 0$, so $\varepsilon_J = \varepsilon_K$, which means $J$ = $K$.
 \end{proof}
@@ -158,8 +178,24 @@ We extend $s$ to $I_n$ by setting $s_{-J} = s_J$ for all $J \in I_n^+$.
 
     For length $L= |J|$ of the interval, there are $L$ diagonal terms in the sum, 
     $2(L-1)$ pairs of diagonal-adjacent indices, each contributing $2$ and $-1$ respectively to the sum
-    (by the definition of the cartan matrix $A$ of type $A_n$).
+    (by the definition of the Cartan matrix $A$ of type $A_n$).
     Therefore, $\sum_{j\in +J}\sum_{k\in +J}A_{j, k} = 2L - 2(L-1) = 2$
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:s_is_refl_on_alpha}
+    For all $J, K \in I_n$, $\alpha_{s_J(K)}=\alpha_K - (\alpha^\vee_K, \alpha_J)\alpha_J$
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:s_is_refl_on_alpha_dual}
+    For all $J, K \in I_n$, $\alpha_{s_J(K)}^\vee=\alpha^\vee_K - (\alpha^\vee_J, \alpha_K)\alpha^\vee_J$
+\end{lemma}
+\begin{proof}
+    
 \end{proof}
 
 \begin{theorem}\label{thm:root_pairing_of_type_A}

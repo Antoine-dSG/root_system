@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.23)  14 MAY 2026 09:47
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.23)  14 MAY 2026 17:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -223,93 +223,16 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip56
 ) (./blueprint.sty) (./macros/common.tex
 \c@theorem=\count285
-) (./macros/web.tex)
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:17: Undefined control sequence.
-l.17 \home
-          {https://Antoine-dSG.github.io/root_system}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:17: LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.17 \home{h
-            ttps://Antoine-dSG.github.io/root_system}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:17: Missing $ inserted.
-<inserted text> 
-                $
-l.17 \home{https://Antoine-dSG.github.io/root_
-                                              system}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:17: Extra }, or forgotten $.
-l.17 ...https://Antoine-dSG.github.io/root_system}
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:18: Undefined control sequence.
-l.18 \github
-            {https://github.com/Antoine-dSG/root_system}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:19: Undefined control sequence.
-l.19 \dochome
-             {https://Antoine-dSG.github.io/root_system/docs}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/Users/ambrosetang/Desktop/school/Y11/Internship/root_system/blueprint/src/web.tex:20: Missing $ inserted.
-<inserted text> 
-                $
-l.20 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (303.25058pt too wide) in paragraph at lines 17--20
-[]\TU/lmr/m/n/10 https://Antoine-dSG.github.io/root$[]\OML/cmm/m/it/10 ystem[][]$ 
- []
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+\c@sublemma=\count286
+\c@subcorollary=\count287
+) (./macros/web.tex) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2024-02-20 L3 backend support: XeTeX
-\g__graphics_track_int=\count286
+\g__graphics_track_int=\count288
 \l__pdf_internal_box=\box54
-\g__pdf_backend_object_int=\count287
-\g__pdf_backend_annotation_int=\count288
-\g__pdf_backend_link_int=\count289
-)
-No file web.aux.
+\g__pdf_backend_object_int=\count289
+\g__pdf_backend_annotation_int=\count290
+\g__pdf_backend_link_int=\count291
+) (./web.aux)
 \openout1 = `web.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -322,7 +245,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 24.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 24.
@@ -337,41 +260,44 @@ LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 Package hyperref Info: Link coloring OFF on input line 24.
+ (./web.out) (./web.out)
 \@outlinefile=\write3
 \openout3 = `web.out'.
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+] (./content.tex
+Overfull \hbox (7.7095pt too wide) in paragraph at lines 18--21
+[]\TU/lmr/bx/n/10 Definition 1. \TU/lmr/m/n/10 A \TU/lmr/m/it/10 root pairing \TU/lmr/m/n/10 is a tuple $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R; M; N; \OMS/cmsy/m/n/10 L\OML/cmm/m/it/10 ; I; ^^K; ^^K[]; s\OT1/cmr/m/n/10 )$ \TU/lmr/m/n/10 where $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R; M; N; \OMS/cmsy/m/n/10 L\OT1/cmr/m/n/10 )$
+ []
 
 
-Package hyperref Warning: Rerun to get /PageLabels entry.
+Overfull \hbox (2.25783pt too wide) in paragraph at lines 40--42
+[]\TU/lmr/m/n/10 Write $\OT1/cmr/m/n/10 [1\OML/cmm/m/it/10 ; n\OT1/cmr/m/n/10 ] = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; :::; n\OMS/cmsy/m/n/10 g$\TU/lmr/m/n/10 . An \TU/lmr/m/it/10 interval \TU/lmr/m/n/10 in $\OT1/cmr/m/n/10 [1\OML/cmm/m/it/10 ; n\OT1/cmr/m/n/10 ]$ \TU/lmr/m/n/10 is a subset of the form $\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i; j\OT1/cmr/m/n/10 ] []
+ []
 
-[1
-
-] [1] (./content.tex) [1] (./web.aux)
+[1] [2] [3]) [4] (./web.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-Package rerunfilecheck Warning: File `web.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `web.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
- )
-(\end occurred inside a group at level 1)
-
-### simple group (level 1) entered at line 17 ({)
-### bottom level 
+Package rerunfilecheck Info: File `web.out' has not changed.
+(rerunfilecheck)             Checksum: 0F45F18C0A57B7E4D641DE5B5B6EC740;412.
+ ) 
 Here is how much of TeX's memory you used:
- 9091 strings out of 474773
- 139753 string characters out of 5757724
- 1932839 words of memory out of 5000000
- 31143 multiletter control sequences out of 15000+600000
- 564829 words of font info for 70 fonts, out of 8000000 for 9000
+ 9169 strings out of 474773
+ 141282 string characters out of 5757724
+ 1933839 words of memory out of 5000000
+ 31203 multiletter control sequences out of 15000+600000
+ 564885 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,13n,79p,615b,1025s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,13n,79p,615b,389s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on web.pdf (3 pages).
+Output written on web.pdf (5 pages).
