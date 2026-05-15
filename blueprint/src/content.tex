@@ -299,12 +299,72 @@ We extend $s$ to $I_n\times \{\pm 1\}$ by setting $s_{-J} = s_J$ for all $J \in 
 \end{proof}
 
 \subsection{Properties}
+
+\begin{definition}
+    Fix a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$.
+    We say that $\Phi$ is:
+    \begin{itemize}
+        \item {\it crystallographic} if for all $i,j \in I$,
+        \[
+            \mathcal{L}(\alpha_i,\alpha^\vee_j) \in \mathbb{Z}.
+        \]
+        \item {\it reduced} if for all $i,j \in I$, $\alpha_i$ and $\alpha_j$ are 
+        linearly dependent over $R$ if and only if $\alpha_i = \pm \alpha_j$.
+        \item {\it finite} if $I$ is finite.
+    \end{itemize}
+\end{definition}
+
+
+\begin{proposition}
+    The root pairing defined in Theorem \ref{thm:root_pairing_of_type_A} is crystallographic, reduced and finite.
+\end{proposition}
+\begin{proof}
+    
+\end{proof}
+
+\begin{definition}
+
+Given a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$, 
+a set $\Delta \subset I$ is called a {\it base} of $\Phi$ if 
 \begin{enumerate}
-    \item Crystallographic root pairing
-    \item Reduced root pairing
-    \item Finite root pairing
-    \item Irreducible root pairing
-    \item Base of a root pairing
-    \item Cartan matrix of a root pairing
-    \item Type of a reduced, finite, irreducible crystallographic root pairing
+    \item The sets $\{\alpha_i : i \in \Delta\}$ and $\{\alpha^\vee_j : j \in \Delta\}$ are $R$-linearly independent, and
+    \item For every $i \in I$, there exist $k,\ell \in \mathbb{Z}_{>0}$, $a_1, \ldots , a_k, b_1, \ldots , b_\ell \in \Delta$ and $\varepsilon,\delta \in \{\pm 1\}$ such that
+\[
+    \alpha_j = \varepsilon \left(\sum_{\ell=1}^k  \alpha_{a_\ell}\right) \quad \text{and} \quad
+    \alpha_j^{\vee} = \delta \left(\sum_{\ell=1}^\ell  \alpha_{b_\ell}^{\vee}\right).
+\]
 \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A base is said to be {\it irreducible} if there exists $k \in \mathbb{Z}_{>0}$ and $a_1, \ldots , a_k \in \Delta$ (not necessarily all distinct !) such that
+\begin{enumerate}
+    \item $\{a_1,\ldots, a_k\} = \Delta$, and
+    \item For every $i \in \{1, \ldots , k-1\}$, $\mathcal{L}(\alpha_{a_i}, \alpha_{a_{i+1}}^{\vee}) \neq 0$.
+\end{enumerate}
+\end{definition}
+
+
+
+
+\begin{definition}
+    Fix a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$ and a base $\Delta \subset I$ of $\Phi$.
+    The pair $(\Phi,\Delta)$ is said to be of type $A$ if there exists a sequence $(i_1, \ldots , i_n)$, $n = |\Delta|$ of distinct 
+    elements of $\Delta$ such that 
+    \[
+        \mathcal{L}(\alpha_{i_k}, \alpha_{i_{k+1}}^\vee) = -1, \quad \text{for all } k \in \{1,\ldots, n-1\}.
+    \]
+\end{definition}
+
+
+\begin{proposition}
+    Let $\Phi$ denote the root pairing constructed in 
+    Theorem \ref{thm:root_pairing_of_type_A}, and set 
+    $\Delta = \{[1], [2], \ldots , [n]\}$. Then $\Delta$ is an irreducible base of $\Phi$, 
+    and the pair $(\Phi, \Delta)$ is of type $A$.
+\end{proposition}
+\begin{proof}
+    
+\end{proof}
+
+
