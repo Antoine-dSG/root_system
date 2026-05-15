@@ -1,4 +1,8 @@
 /.lake
+.DS_Store
+blueprint/lean_decls
+blueprint/web/
+*.paux
 
 ## Core auxiliary files
 *.aux

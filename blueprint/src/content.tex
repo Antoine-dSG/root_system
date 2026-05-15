@@ -1,397 +1,447 @@
 % !TEX root = print.tex
-% In this file you should put the actual content of the blueprint.
-% It will be used both by the web and the print version.
-% It should *not* include the \begin{document}
-%
-% If you want to split the blueprint content into several files then
-% the current file can be a simple sequence of \input. Otherwise It
-% can start with a \section or \chapter for instance.
-\chapter{Root pairings}
-\section{Definitions}
-Recall that a {\it perfect pairing} is a quadruple $(R,M,N,\mathcal{L})$ where $R$ is a ring, $M$ and $N$ are $R$-modules,
-and $\mathcal{L}: M \times N \to R$ is a bilinear map such that the induced maps
-$M \to \text{Hom}_R(N,R)$ and $N \to \text{Hom}_R(M,R)$ are isomorphisms of $R$-modules.
+% This file contains the shared blueprint content for the print and web builds.
 
-If $I$ is a set, denote by $\text{Perm}(I)$ the group of permutations of $I$.
+\chapter{Root pairings}
+
+\section{Definitions}
+
+Recall that a \emph{perfect pairing} is a quadruple $(R,M,N,\mathcal{L})$ where
+$R$ is a ring, $M$ and $N$ are $R$-modules, and
+$\mathcal{L}:M\times N\to R$ is a bilinear map such that the induced maps
+$M\to \operatorname{Hom}_R(N,R)$ and $N\to \operatorname{Hom}_R(M,R)$ are
+isomorphisms of $R$-modules. If $I$ is a set, denote by
+$\operatorname{Perm}(I)$ the group of permutations of $I$.
 
 \begin{definition}\label{def:root_pairing}
-    A {\it root pairing} is a tuple $(R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$ where $(R,M,N,\mathcal{L})$ is a perfect pairing,
-    $I$ is a set, $\alpha: I \to M, i \mapsto \alpha_i$, $\alpha^{\vee}: I \to N, i \mapsto \alpha_i^{\vee}$, and
-    $s: I \to \text{Perm}(I), i \mapsto s_i$, with the conditions that
+\lean{RootPairing}
+\leanok
+A \emph{root pairing} is a tuple
+$(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ where
+$(R,M,N,\mathcal{L})$ is a perfect pairing, $I$ is a set,
+$\alpha:I\to M$, $i\mapsto \alpha_i$,
+$\alpha^\vee:I\to N$, $i\mapsto \alpha_i^\vee$, and
+$s:I\to \operatorname{Perm}(I)$, $i\mapsto s_i$, satisfying:
 \begin{enumerate}
-    \item $\alpha, \alpha^{\vee}$ are injective,
-    \item For all $i \in I$, $\mathcal{L}(\alpha_i, \alpha^{\vee}_i) = 2$,
-    \item For all $i,j \in I$, we have
-\begin{align*}
-    \alpha_{s_i(j)} &= \alpha_j - \mathcal{L}(\alpha_j, \alpha_i^{\vee})\alpha_i, \\
-    \alpha_{s_i(j)}^{\vee} &= \alpha_j^{\vee} - \mathcal{L}(\alpha_i, \alpha_j^{\vee})\alpha_i^{\vee}.
-\end{align*}
+    \item $\alpha$ and $\alpha^\vee$ are injective,
+    \item for all $i\in I$, $\mathcal{L}(\alpha_i,\alpha_i^\vee)=2$,
+    \item for all $i,j\in I$,
+    \begin{align*}
+        \alpha_{s_i(j)}
+            &=\alpha_j-\mathcal{L}(\alpha_j,\alpha_i^\vee)\alpha_i,\\
+        \alpha_{s_i(j)}^\vee
+            &=\alpha_j^\vee-\mathcal{L}(\alpha_i,\alpha_j^\vee)\alpha_i^\vee.
+    \end{align*}
 \end{enumerate}
 \end{definition}
 
-\section{Properties}
-
-\begin{definition}
-    Fix a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$.
-    We say that $\Phi$ is:
-    \begin{itemize}
-        \item {\it crystallographic} if for all $i,j \in I$,
-        \[
-            \mathcal{L}(\alpha_i,\alpha^\vee_j) \in \mathbb{Z}.
-        \]
-        \item {\it reduced} if for all $i,j \in I$, $\alpha_i$ and $\alpha_j$ are 
-        linearly dependent over $R$ if and only if $\alpha_i = \pm \alpha_j$.
-        \item {\it finite} if $I$ is finite.
-    \end{itemize}
+\begin{definition}\label{def:root_pairing_properties}
+\lean{RootPairing.IsCrystallographic, RootPairing.IsReduced, Finite}
+\uses{def:root_pairing}
+\leanok
+Fix a root pairing $\Phi=(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$.
+We say that $\Phi$ is:
+\begin{itemize}
+    \item \emph{crystallographic} if
+    $\mathcal{L}(\alpha_i,\alpha_j^\vee)\in \mathbb{Z}$ for all $i,j\in I$,
+    \item \emph{reduced} if, for all $i,j\in I$, the roots $\alpha_i$ and
+    $\alpha_j$ are linearly dependent over $R$ if and only if
+    $\alpha_i=\pm\alpha_j$,
+    \item \emph{finite} if $I$ is finite.
+\end{itemize}
 \end{definition}
 
-\begin{definition}
-
-Given a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$, 
-a set $\Delta \subset I$ is called a {\it base} of $\Phi$ if 
+\begin{definition}\label{def:root_pairing_base}
+\lean{RootPairing.Base}
+\uses{def:root_pairing}
+\leanok
+Given a root pairing $\Phi=(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$,
+a set $\Delta\subset I$ is called a \emph{base} of $\Phi$ if:
 \begin{enumerate}
-    \item The sets $\{\alpha_i : i \in \Delta\}$ and $\{\alpha^\vee_j : j \in \Delta\}$ are $R$-linearly independent, and
-    \item For every $i \in I$, there exist $k,\ell \in \mathbb{Z}_{>0}$, $a_1, \ldots , a_k, b_1, \ldots , b_\ell \in \Delta$ and $\varepsilon,\delta \in \{\pm 1\}$ such that
-\[
-    \alpha_j = \varepsilon \left(\sum_{\ell=1}^k  \alpha_{a_\ell}\right) \quad \text{and} \quad
-    \alpha_j^{\vee} = \delta \left(\sum_{\ell=1}^\ell  \alpha_{b_\ell}^{\vee}\right).
-\]
+    \item the sets $\{\alpha_i:i\in\Delta\}$ and
+    $\{\alpha_i^\vee:i\in\Delta\}$ are $R$-linearly independent, and
+    \item for every $x\in I$, there exist
+    $k,m\in\mathbb{Z}_{>0}$,
+    $a_1,\ldots,a_k,b_1,\ldots,b_m\in\Delta$, and
+    $\varepsilon,\delta\in\{\pm1\}$ such that
+    \[
+        \alpha_x=\varepsilon\sum_{r=1}^k\alpha_{a_r}
+        \quad\text{and}\quad
+        \alpha_x^\vee=\delta\sum_{r=1}^m\alpha_{b_r}^\vee.
+    \]
 \end{enumerate}
 \end{definition}
 
-\begin{definition}
-    A base is said to be {\it irreducible} if there exists $k \in \mathbb{Z}_{>0}$ and $a_1, \ldots , a_k \in \Delta$ (not necessarily all distinct !) such that
+\begin{definition}\label{def:irreducible_base}
+\lean{RootPairing.IsIrreducible}
+\uses{def:root_pairing,def:root_pairing_base}
+\leanok
+A base $\Delta$ is said to be \emph{irreducible} if there exist
+$k\in\mathbb{Z}_{>0}$ and $a_1,\ldots,a_k\in\Delta$ such that:
 \begin{enumerate}
-    \item $\{a_1,\ldots, a_k\} = \Delta$, and
-    \item For every $i \in \{1, \ldots , k-1\}$, $\mathcal{L}(\alpha_{a_i}, \alpha_{a_{i+1}}^{\vee}) \neq 0$.
+    \item $\{a_1,\ldots,a_k\}=\Delta$, and
+    \item $\mathcal{L}(\alpha_{a_r},\alpha_{a_{r+1}}^\vee)\ne0$ for every
+    $1\le r<k$.
 \end{enumerate}
 \end{definition}
 
-
-
-
-\begin{definition}
-    Fix a root pairing $\Phi = (R,M,N,\mathcal{L},I,\alpha,\alpha^{\vee},s)$ and a base $\Delta \subset I$ of $\Phi$.
-    The pair $(\Phi,\Delta)$ is said to be of 
-    \begin{enumerate}
-        \item type $A$ if there exists a sequence $(i_1, \ldots , i_n)$, $n = |\Delta|$ of distinct 
-            elements of $\Delta$ such that 
-            \[
-                \mathcal{L}(\alpha_{i_k}, \alpha_{i_{k+1}}^\vee) = -1, \quad \text{for all } k \in \{1,\ldots, n-1\}.
-            \]
-        \item type $B$ if there exists a sequence $(i_1, \ldots , i_n)$, $n = |\Delta|$ of distinct 
-            elements of $\Delta$ such that
-            \[
-                \mathcal{L}(\alpha_{i_k}, \alpha_{i_{k+1}}^\vee) = -1, \quad \text{for all } k \in \{1,\ldots, n-2\}.
-            \]
-            \[
-                \mathcal{L}(\alpha_{n}, \alpha_{i_{n-1}}^\vee) = -2
-            \]
-        \item type $C$ if there exists a sequence $(i_1, \ldots , i_n)$, $n = |\Delta|$ of distinct 
-            elements of $\Delta$ such that
-            \[
-                \mathcal{L}(\alpha_{i_k}, \alpha_{i_{k+1}}^\vee) = -1, \quad \text{for all } k \in \{1,\ldots, n-2\}
-            \]
-            \[
-                \mathcal{L}(\alpha_{n-1}, \alpha_{i_{n}}^\vee) = -2
-            \]
-        \item type $D$ if there exists distinct elements $d_1, d_2, t \in \Delta$ such that
-            \[
-                \mathcal{L}(\alpha_{d_i}, \alpha_{t}^\vee) = -1
-            \]
-            \[
-                \Delta \setminus \{d_1, d_2\} \text{ is of type A}
-            \]
-        \item type $E$ if there exists distinct elements $d_1, d_2, t \in \Delta$ such that
-            \[
-                \mathcal{L}(\alpha_{d_1}, \alpha_{d_2}^\vee) = -1, \mathcal{L}(\alpha_{d_2}, \alpha_{t}^\vee) = -1
-            \]
-            \[
-                \Delta \setminus \{d_1, d_2\} \text{ is of type A}
-            \]
-    \end{enumerate}
+\begin{definition}\label{def:cartan_type}
+\lean{CartanMatrix.A, CartanMatrix.B, CartanMatrix.C, CartanMatrix.D, CartanMatrix.E₆, CartanMatrix.E₇, CartanMatrix.E₈}
+\uses{def:root_pairing_base}
+\leanok
+Fix a root pairing $\Phi=(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ and a
+base $\Delta\subset I$. The pair $(\Phi,\Delta)$ is said to be of:
+\begin{enumerate}
+    \item type $A$ if there is a sequence $(i_1,\ldots,i_n)$, where
+    $n=|\Delta|$, of distinct elements of $\Delta$ such that
+    \[
+        \mathcal{L}(\alpha_{i_r},\alpha_{i_{r+1}}^\vee)=-1
+        \quad\text{for all }1\le r<n;
+    \]
+    \item type $B$ if there is a sequence $(i_1,\ldots,i_n)$ of distinct
+    elements of $\Delta$ such that
+    \[
+        \mathcal{L}(\alpha_{i_r},\alpha_{i_{r+1}}^\vee)=-1
+        \quad\text{for all }1\le r<n-1,
+        \qquad
+        \mathcal{L}(\alpha_{i_n},\alpha_{i_{n-1}}^\vee)=-2;
+    \]
+    \item type $C$ if there is a sequence $(i_1,\ldots,i_n)$ of distinct
+    elements of $\Delta$ such that
+    \[
+        \mathcal{L}(\alpha_{i_r},\alpha_{i_{r+1}}^\vee)=-1
+        \quad\text{for all }1\le r<n-1,
+        \qquad
+        \mathcal{L}(\alpha_{i_{n-1}},\alpha_{i_n}^\vee)=-2;
+    \]
+    \item type $D$ if there exist distinct elements $d_1,d_2,t\in\Delta$
+    such that
+    \[
+        \mathcal{L}(\alpha_{d_a},\alpha_t^\vee)=-1
+        \quad(a=1,2),
+    \]
+    and $\Delta\setminus\{d_1,d_2\}$ is of type $A$;
+    \item type $E$ if there exist distinct elements $d_1,d_2,t\in\Delta$
+    such that
+    \[
+        \mathcal{L}(\alpha_{d_1},\alpha_{d_2}^\vee)=-1,
+        \qquad
+        \mathcal{L}(\alpha_{d_2},\alpha_t^\vee)=-1,
+    \]
+    and $\Delta\setminus\{d_1,d_2\}$ is of type $A$.
+\end{enumerate}
 \end{definition}
+
 \chapter{Constructions}
+
 \section{Type A}
-Consider the perfect pairing $(R,M,N,\mathcal{L}) = (\mathbb{Z}, \mathbb{Z}^n, (\mathbb{Z}^n)^*, (\cdot , \cdot))$ where $(\cdot , \cdot)$ is the
-canonical pairing between $\mathbb{Z}^n$ and its algebraic dual $(\mathbb{Z}^n)^* := {\rm Hom}_{\mathbb{Z}}(\mathbb{Z}^n, \mathbb{Z})$, i.e.
-the dot product.
 
-We denote by $e_1, ..., e_n$ the standard basis of $\mathbb{Z}^n$ and by $e_1^*, ..., e_n^*$ the dual basis of $(\mathbb{Z}^n)^*$.
+Consider the perfect pairing
+\[
+    (R,M,N,\mathcal{L})
+    =
+    \bigl(\mathbb{Z},\mathbb{Z}^n,(\mathbb{Z}^n)^*,
+    \langle\cdot,\cdot\rangle\bigr),
+\]
+where $\langle\cdot,\cdot\rangle$ is the canonical pairing between
+$\mathbb{Z}^n$ and its algebraic dual
+$(\mathbb{Z}^n)^*=\operatorname{Hom}_{\mathbb{Z}}(\mathbb{Z}^n,\mathbb{Z})$.
+Let $e_1,\ldots,e_n$ be the standard basis of $\mathbb{Z}^n$, and let
+$e_1^*,\ldots,e_n^*$ be the dual basis.
 
-Write $[1,n] = \{1, ..., n\}$. An {\it interval} in $[1,n]$ is a subset of the form $[i,j] \stackrel{\text{denotes}}{=}\{i, i+1, ..., j\}$
-for some $1 \leq i \leq j \leq n$. We denote by $I_n$ the set of intervals in $[1,n]$. Write $[i] := [i,i]$ for $1 \leq i \leq n$.
+Write $[1,n]=\{1,\ldots,n\}$. An \emph{interval} in $[1,n]$ is a set
+$[i,j]=\{i,i+1,\ldots,j\}$ with $1\le i\le j\le n$. We denote by $I_n$
+the set of intervals in $[1,n]$ and write $[i]=[i,i]$.
 
-A {\it signed interval} in $[1,n]$ is an element of $I_n \times \{1,-1\}$. We denote by $I_n^+$ the set of signed intervals of the
-form $(J,1)$ and by $I_n^-$ the set of signed intervals of the form $(J,-1)$. By abuse of notation, we identify $I_n$ with $I_n^+$ and
-write $J$ for the signed interval $(J,1)$ for all $J \in I_n$. If $J \in I_n$ then we write $-J$ for the signed
-interval $(J,-1)$.
+A \emph{signed interval} in $[1,n]$ is an element of
+$I_n\times\{\pm1\}$. We identify $J\in I_n$ with $(J,1)$ and write
+$-J$ for $(J,-1)$.
 
-
-Let $\mathcal{A}_n = (a_{i,j})$ be the $n\times n$ integer matrix defined by
-
-i) $a_{i,i} = 2$ for all $i \in [1,n]$,
-
-ii) $a_{i,j} = -1$ if $|i-j|=1$, and
-
-iii) $a_{i,j} = 0$ otherwise.
-
-The matrix $\mathcal{A}_n$ is often called a {\it Cartan matrix of type $A_n$}. In the rest of this subsection we write
-$A = \mathcal{A}_n$.
-
-\begin{lemma}
-    For any $n \in \mathbb{Z}_{\geq 1}$, $\det(\mathcal{A}_n) = n+1$.
-    In particular, $\mathcal{A}_n$ is invertible.
-\end{lemma}
-\begin{proof}
-        By a direct computation, $\det(\mathcal{A}_1) = 2$ and $\det(\mathcal{A}_2) = 3$.
-        Now fix $n \geq 3$, and suppose that the claim holds for all $k < n$.
-        Using the Laplace expansion along the first row, we have
-        \begin{align*}
-        \det(\mathcal{A}_{n}) &= 2\det(\mathcal{A}_{n-1})-\det(\mathcal{A}_{n-2}) \\
-                                &=  2n - (n-1) = n+1.
-        \end{align*}
-        The statement follows.
-\end{proof}
-\begin{corollary}
-    The set $\{\mathcal{A}_n e_k : 1 \leq k \leq n \}$ is linearly independent over $\mathbb{Q}$.
-\end{corollary}
-\begin{proof}
-        If $\sum_{k=1}^n c_k \mathcal{A}_n e_k = 0$ for some $c_1, ..., c_n \in \mathbb{Q}$,
-        then $\mathcal{A}_n(\sum_{k=1}^n c_k e_k) = 0$. Left-multiplying both sides by
-        $\mathcal{A}_n^{-1}$, we have $\sum_{k=1}^n c_k e_k = 0$. Since
-        $\{e_k : 1 \leq k \leq n\}$ is a basis of $\mathbb{Z}^n$, we have $c_k = 0$ for all $k$.
-\end{proof}
+Let $A=\mathcal{A}_n=(a_{u,r})$ be the $n\times n$ integer matrix defined by
+\[
+    a_{u,r}=
+    \begin{cases}
+        2 & \text{if }u=r,\\
+        -1 & \text{if }|u-r|=1,\\
+        0 & \text{otherwise.}
+    \end{cases}
+\]
+This is the Cartan matrix of type $A_n$.
 
 Define
-\begin{align}\label{eq:alpha_definition}
-    &\alpha: I_n \times \{\pm 1\} \to \mathbb{Z}^n, & \quad \forall J \in I_n, \;\; \alpha_{\pm J} = \pm(\sum_{j \in J} A e_j), \\\label{eq:alpha_dual_definition}
-    &\alpha^{\vee}: I_n \times \{\pm 1\} \to (\mathbb{Z}^n)^*, & \quad \forall J \in I_n, \;\; \alpha^{\vee}_{\pm J} = \pm(\sum_{j \in J} e_j^*).
+\begin{align}
+    \alpha &: I_n\times\{\pm1\}\to\mathbb{Z}^n,
+    &
+    \alpha_{\pm J} &= \pm\sum_{r\in J}Ae_r,
+    \label{eq:alpha_definition}\\
+    \alpha^\vee &: I_n\times\{\pm1\}\to(\mathbb{Z}^n)^*,
+    &
+    \alpha_{\pm J}^\vee &= \pm\sum_{r\in J}e_r^*.
+    \label{eq:alpha_dual_definition}
 \end{align}
 
-\begin{lemma}
-    \label{lemma:alpha_and_alpha_dual_injective}
-    The maps $\alpha: I_n\times \{\pm 1\} \to \mathbb{Z}^n$ and $\alpha^{\vee}: I_n\times \{\pm 1\} \to (\mathbb{Z}^n)^*$ are injective.
+\begin{lemma}\label{lemma:pairing_formula}
+\lean{pairing_formula}
+\uses{def:root_pairing}
+\leanok
+Let $J=\varepsilon[i,j]$ and $K=\delta[k,l]$ be signed intervals. Then
+\[
+    \mathcal{L}(\alpha_K,\alpha_J^\vee)
+    =
+    \varepsilon\delta
+    \bigl(
+        \mathbf{1}_{i=k}
+        +\mathbf{1}_{j=l}
+        -\mathbf{1}_{i=l+1}
+        -\mathbf{1}_{k=j+1}
+    \bigr).
+\]
 \end{lemma}
 \begin{proof}
-    Let $J,K \in I_n\times \{\pm 1\}$. Write $J=\varepsilon J_0$ and $K=\delta K_0$, where
-    $J_0,K_0 \in I_n$ and $\varepsilon,\delta \in \{\pm 1\}$.
-    Suppose first that $\alpha_J=\alpha_K$. Then
-    \[
-        \sum_{r=1}^n\bigl(\varepsilon\mathbf{1}_{r\in J_0}
-        -\delta\mathbf{1}_{r\in K_0}\bigr) A e_r = 0.
-    \]
-    Since the vectors $A e_1,\ldots,A e_n$ are linearly independent, each coefficient is zero. Thus
-    \[
-        \varepsilon\mathbf{1}_{r\in J_0}=\delta\mathbf{1}_{r\in K_0}
-        \qquad\text{for all }r\in [1,n].
-    \]
-    It follows that $r\in J_0$ if and only if $r\in K_0$, so $J_0=K_0$; since these intervals are nonempty,
-    the same equality of coefficients also gives $\varepsilon=\delta$. Hence $J=K$.
-
-    The proof for $\alpha^\vee$ is identical, using the linear independence of the dual basis
-    $e_1^*,\ldots,e_n^*$. Indeed, if $\alpha^\vee_J=\alpha^\vee_K$, then
-    \[
-        \sum_{r=1}^n\bigl(\varepsilon\mathbf{1}_{r\in J_0}
-        -\delta\mathbf{1}_{r\in K_0}\bigr) e_r^* = 0,
-    \]
-    and the same coefficient comparison gives $J_0=K_0$ and $\varepsilon=\delta$.
+It is enough to treat positive intervals, since the signs factor out by
+bilinearity. For fixed $r$, the vector $Ae_r$ has coefficient $2$ in
+coordinate $r$, coefficient $-1$ in the adjacent coordinates $r-1$ and
+$r+1$, and coefficient $0$ elsewhere. Hence, for $u\in[1,n]$,
+\[
+    \sum_{r=k}^{l} a_{u,r}
+    =
+    \mathbf{1}_{u=k}
+    +\mathbf{1}_{u=l}
+    -\mathbf{1}_{u=k-1}
+    -\mathbf{1}_{u=l+1}.
+\]
+Summing over $u=i,\ldots,j$ gives the displayed formula.
 \end{proof}
 
-\begin{lemma}
-    \label{lemma:alpha_dual_alpha_is_two}
-    For every $J \in I_n\times \{\pm 1\}$, $\mathcal{L}(\alpha_J,\alpha^\vee_J)=2$.
+\begin{lemma}\label{lemma:alpha_dual_alpha_is_two}
+\lean{pairing_self, root_coroot_two'}
+\uses{lemma:pairing_formula}
+\leanok
+For every $J\in I_n\times\{\pm1\}$,
+$\mathcal{L}(\alpha_J,\alpha_J^\vee)=2$.
 \end{lemma}
 \begin{proof}
-    Write $J=\varepsilon J_0$, where $J_0=[p,q]$ and $\varepsilon \in \{\pm 1\}$. Since $\varepsilon^2=1$,
-    \begin{align*}
-        \mathcal{L}(\alpha_J,\alpha^\vee_J)
-        &= \sum_{u=p}^{q}\sum_{v=p}^{q} e_v^*(A e_u)\\
-        &= \sum_{u=p}^{q}\sum_{v=p}^{q} a_{v,u}.
-    \end{align*}
-    If $m=q-p+1$ is the length of $J_0$, this sum has $m$ diagonal terms, each equal to $2$, and
-    $2(m-1)$ ordered adjacent off-diagonal terms, each equal to $-1$. All other terms are zero. Hence
-    \[
-        \mathcal{L}(\alpha_J,\alpha^\vee_J)=2m-2(m-1)=2.
-    \]
+Write $J=\varepsilon[i,j]$. In Lemma \ref{lemma:pairing_formula}, the two
+positive endpoint terms are both $1$, while the two negative endpoint
+conditions $i=j+1$ are impossible because $i\le j$. Thus
+\[
+    \mathcal{L}(\alpha_J,\alpha_J^\vee)
+    =
+    \varepsilon^2(1+1)=2.
+\]
 \end{proof}
 
-We first define $s_J(K)$ for $J,K \in I_n$. Set $L = (J \cup K) \backslash (J \cap K)$.
-It is clear that $J,K,L$ satisfy exactly one of the following four conditions.
+\begin{lemma}\label{lemma:detail_pairing_eq_two}
+\lean{pairing_eq_two_iff_eq}
+\uses{lemma:pairing_formula,lemma:alpha_dual_alpha_is_two}
+\leanok
+For signed intervals $J$ and $K$,
+\[
+    \mathcal{L}(\alpha_K,\alpha_J^\vee)=2
+    \quad\Longleftrightarrow\quad
+    K=J.
+\]
+\end{lemma}
+\begin{proof}
+Write $J=\varepsilon[i,j]$ and $K=\delta[k,l]$. Let
+\[
+    E=
+    \mathbf{1}_{i=k}
+    +\mathbf{1}_{j=l}
+    -\mathbf{1}_{i=l+1}
+    -\mathbf{1}_{k=j+1}.
+\]
+By Lemma \ref{lemma:pairing_formula},
+$\mathcal{L}(\alpha_K,\alpha_J^\vee)=\varepsilon\delta E$.
+The two negative endpoint conditions cannot both hold: if
+$i=l+1$ and $k=j+1$, then $l<i\le j<k\le l$, a contradiction. Hence
+$E\ge -1$. Since also $E\le2$, the equality $\varepsilon\delta E=2$
+forces $\varepsilon\delta=1$ and $E=2$.
+
+The equality $E=2$ forces both positive endpoint terms to be $1$, so
+$i=k$ and $j=l$. Since $\varepsilon\delta=1$ and
+$\varepsilon,\delta\in\{\pm1\}$, we also have $\varepsilon=\delta$.
+Thus $K=J$. The converse is Lemma \ref{lemma:alpha_dual_alpha_is_two}.
+\end{proof}
+
+\begin{lemma}\label{lemma:alpha_and_alpha_dual_injective}
+\lean{α_injective, α_dual_injective}
+\uses{lemma:detail_pairing_eq_two}
+\leanok
+The maps
+$\alpha:I_n\times\{\pm1\}\to\mathbb{Z}^n$ and
+$\alpha^\vee:I_n\times\{\pm1\}\to(\mathbb{Z}^n)^*$ are injective.
+\end{lemma}
+\begin{proof}
+Suppose first that $\alpha_J=\alpha_K$. Pairing both sides with
+$\alpha_J^\vee$ gives
+\[
+    2=\mathcal{L}(\alpha_J,\alpha_J^\vee)
+    =\mathcal{L}(\alpha_K,\alpha_J^\vee).
+\]
+Lemma \ref{lemma:detail_pairing_eq_two} gives $K=J$.
+
+Now suppose that $\alpha_J^\vee=\alpha_K^\vee$. Pairing both sides with
+$\alpha_J$ gives
+\[
+    2=\mathcal{L}(\alpha_J,\alpha_J^\vee)
+    =\mathcal{L}(\alpha_J,\alpha_K^\vee).
+\]
+Applying Lemma \ref{lemma:detail_pairing_eq_two} with the roles of the
+two signed intervals exchanged gives $J=K$.
+\end{proof}
+
+We first define $s_J(K)$ for $J,K\in I_n$. Set
+$L=(J\cup K)\setminus(J\cap K)$. Exactly one of the following cases occurs:
 \begin{description}
-    \item[{\bf R1.}] $L = \emptyset$.
-    \item[{\bf R2.}] $L \in I_n$ and $K \subset J$,
-    \item[{\bf R3.}] $L \in I_n$ and $K \not\subseteq J$,
-    \item[{\bf R4.}] $L \not\in I_n \cup \{\emptyset\}$.
+    \item[{\bf R1.}] $L=\emptyset$.
+    \item[{\bf R2.}] $L\in I_n$ and $K\subset J$.
+    \item[{\bf R3.}] $L\in I_n$ and $K\not\subseteq J$.
+    \item[{\bf R4.}] $L\notin I_n\cup\{\emptyset\}$.
 \end{description}
-Then,
+Then
 \begin{equation}\label{eq:s_J_definition}
-s_J(K) = \begin{cases}
-    -K  & \text{in case }{\bf R1},  \\
-    -L & \text{in case }{\bf R2},  \\
-    L & \text{in case }{\bf R3},  \\
+s_J(K)=
+\begin{cases}
+    -K & \text{in case }{\bf R1},\\
+    -L & \text{in case }{\bf R2},\\
+    L & \text{in case }{\bf R3},\\
     K & \text{in case }{\bf R4}.
 \end{cases}
 \end{equation}
 
-If $J = [i,j]$ and $K = [k,l]$, then (\ref{eq:s_J_definition}) can be rewritten as
+If $J=[i,j]$ and $K=[k,l]$, this is equivalently
 \begin{equation}\label{eq:s_J_interval_definition}
-    s_{[i, j]}[k, l] =
-            \begin{cases}
-                {-[k,l]}  & {\rm if }\; (i, j) = (k, l) \\
-                {-[l+1,j]} & {\rm if }\; i = k, j > l \\
-                {[j+1, l]} & {\rm if }\; i = k, j < l \\
-                {-[i, k-1]} & {\rm if }\; i < k, j = l \\
-                {[k, i-1]} & {\rm if }\; i > k, j = l \\
-                {[k, j]} & {\rm if }\; i = l+1 \\
-                {[i, l]} & {\rm if }\; k = j+1 \\
-                {[k, l]} & {\rm otherwise.}
-            \end{cases}
+s_{[i,j]}[k,l]=
+\begin{cases}
+    -[k,l] & \text{if }(i,j)=(k,l),\\
+    -[l+1,j] & \text{if }i=k,\ j>l,\\
+    [j+1,l] & \text{if }i=k,\ j<l,\\
+    -[i,k-1] & \text{if }i<k,\ j=l,\\
+    [k,i-1] & \text{if }i>k,\ j=l,\\
+    [k,j] & \text{if }i=l+1,\\
+    [i,l] & \text{if }k=j+1,\\
+    [k,l] & \text{otherwise.}
+\end{cases}
 \end{equation}
 
+Extend $s_J$ to signed intervals by $s_J(-K)=-s_J(K)$, and extend the
+first argument by $s_{-J}=s_J$.
 
-We extend $s_J$ to $I_n\times \{\pm 1\}$ by setting $s_{J}(-K) = -s_J(K)$ for all $K \in I_n$.
-We extend $s$ to $I_n\times \{\pm 1\}$ by setting $s_{-J} = s_J$ for all $J \in I_n$.
-\begin{lemma}
-    \label{lemma:s_J_are_permutations}
-    \lean{s}
-    For all $J \in I_n\times \{\pm 1\}$, we have $s_J \in {\rm Perm}(I_n\times \{\pm 1\})$.
+\begin{lemma}\label{lemma:s_J_are_permutations}
+\lean{s, s_involutive}
+\uses{def:root_pairing}
+\leanok
+For all $J\in I_n\times\{\pm1\}$, we have
+$s_J\in\operatorname{Perm}(I_n\times\{\pm1\})$.
 \end{lemma}
 \begin{proof}
-    Fix $J \in I_n\times \{\pm 1\}$. We prove that $s_J^2 = \text{id}$ by a straightforward
-    case-by-case check using the definition of
-    $s_J$ and the four cases above. Then $s_J^{-1} = s_J$, and our claim is proved.
+A direct case check from \eqref{eq:s_J_interval_definition} shows that
+$s_J(s_J(K))=K$ for every signed interval $K$. Hence $s_J$ is its own
+inverse, and therefore a permutation.
 \end{proof}
 
-
-
-\begin{lemma}
-    \label{lemma:s_is_refl_on_alpha}
-    For all $J, K \in I_n\times \{\pm 1\}$,
-    \[
-        \alpha_{s_J(K)}=\alpha_K-\mathcal{L}(\alpha_K,\alpha^\vee_J)\alpha_J.
-    \]
+\begin{lemma}\label{lemma:s_is_refl_on_alpha}
+\lean{reflectionPerm_root_eval, reflectionPerm_root'}
+\uses{lemma:pairing_formula}
+\leanok
+For all $J,K\in I_n\times\{\pm1\}$,
+\[
+    \alpha_{s_J(K)}
+    =
+    \alpha_K-\mathcal{L}(\alpha_K,\alpha_J^\vee)\alpha_J.
+\]
 \end{lemma}
 \begin{proof}
-    First assume that $J=[i,j]$ and $K=[k,l]$ are positive intervals. Let
-    $c=\mathcal{L}(\alpha_K,\alpha^\vee_J)$. For $u\in [1,n]$,
-    \[
-        \sum_{r=k}^{l} a_{u,r}
-        =\mathbf{1}_{u=k}+\mathbf{1}_{u=l}-\mathbf{1}_{u=k-1}-\mathbf{1}_{u=l+1}.
-    \]
-    Summing this identity over $u=i,\ldots,j$ gives
-    \[
-        c=\delta_{i,k}+\delta_{j,l}-\delta_{i,l+1}-\delta_{j,k-1},
-    \]
-    where $\delta$ denotes the Kronecker delta. Comparing this value with
-    (\ref{eq:s_J_interval_definition}), we get the following cases:
-    \[
-    \begin{array}{c|c|c}
-    \text{condition} & c & \alpha_K-c\alpha_J \\ \hline
-    (i,j)=(k,l) & 2 & -\alpha_{[k,l]} \\
-    i=k,\ j>l & 1 & -\alpha_{[l+1,j]} \\
-    i=k,\ j<l & 1 & \alpha_{[j+1,l]} \\
-    i<k,\ j=l & 1 & -\alpha_{[i,k-1]} \\
-    i>k,\ j=l & 1 & \alpha_{[k,i-1]} \\
-    i=l+1 & -1 & \alpha_{[k,j]} \\
-    k=j+1 & -1 & \alpha_{[i,l]} \\
-    \text{otherwise} & 0 & \alpha_{[k,l]}.
-    \end{array}
-    \]
-    Each entry in the last column is exactly $\alpha_{s_J(K)}$ by
-    (\ref{eq:s_J_interval_definition}). Thus the desired identity holds for positive intervals.
+First assume that $J=[i,j]$ and $K=[k,l]$ are positive intervals. Put
+$c=\mathcal{L}(\alpha_K,\alpha_J^\vee)$. Lemma
+\ref{lemma:pairing_formula} gives
+\[
+    c=
+    \mathbf{1}_{i=k}
+    +\mathbf{1}_{j=l}
+    -\mathbf{1}_{i=l+1}
+    -\mathbf{1}_{k=j+1}.
+\]
+Comparing this value with \eqref{eq:s_J_interval_definition} gives:
+\[
+\begin{array}{c|c|c}
+\text{condition} & c & \alpha_K-c\alpha_J \\ \hline
+(i,j)=(k,l) & 2 & -\alpha_{[k,l]}\\
+i=k,\ j>l & 1 & -\alpha_{[l+1,j]}\\
+i=k,\ j<l & 1 & \alpha_{[j+1,l]}\\
+i<k,\ j=l & 1 & -\alpha_{[i,k-1]}\\
+i>k,\ j=l & 1 & \alpha_{[k,i-1]}\\
+i=l+1 & -1 & \alpha_{[k,j]}\\
+k=j+1 & -1 & \alpha_{[i,l]}\\
+\text{otherwise} & 0 & \alpha_{[k,l]}.
+\end{array}
+\]
+Each entry in the last column is precisely $\alpha_{s_J(K)}$.
 
-    Now write arbitrary signed intervals as $J=\varepsilon J_0$ and $K=\delta K_0$, with
-    $J_0,K_0\in I_n$ and $\varepsilon,\delta\in\{\pm 1\}$. Since $s_{\varepsilon J_0}(\delta K_0)=
-    \delta s_{J_0}(K_0)$ and
-    $\mathcal{L}(\alpha_K,\alpha^\vee_J)=\delta\varepsilon\mathcal{L}(\alpha_{K_0},\alpha^\vee_{J_0})$,
-    the positive case gives
-    \begin{align*}
-        \alpha_{s_J(K)}
-        &= \delta\alpha_{s_{J_0}(K_0)}\\
-        &= \delta\bigl(\alpha_{K_0}
-            -\mathcal{L}(\alpha_{K_0},\alpha^\vee_{J_0})\alpha_{J_0}\bigr)\\
-        &= \alpha_K-\mathcal{L}(\alpha_K,\alpha^\vee_J)\alpha_J.
-    \end{align*}
+For arbitrary signs, write $J=\varepsilon J_0$ and $K=\delta K_0$ with
+$J_0,K_0\in I_n$ and $\varepsilon,\delta\in\{\pm1\}$. Since
+$s_{\varepsilon J_0}(\delta K_0)=\delta s_{J_0}(K_0)$ and
+\[
+    \mathcal{L}(\alpha_{\delta K_0},\alpha_{\varepsilon J_0}^\vee)
+    =
+    \delta\varepsilon
+    \mathcal{L}(\alpha_{K_0},\alpha_{J_0}^\vee),
+\]
+the positive case, multiplied by $\delta$, proves the signed case.
 \end{proof}
 
-\begin{lemma}
-    \label{lemma:s_is_refl_on_alpha_dual}
-    For all $J, K \in I_n\times \{\pm 1\}$,
-    \[
-        \alpha_{s_J(K)}^\vee=\alpha^\vee_K-\mathcal{L}(\alpha_J,\alpha^\vee_K)\alpha^\vee_J.
-    \]
+\begin{lemma}\label{lemma:s_is_refl_on_alpha_dual}
+\lean{pairing_symm, reflectionPerm_coroot_single, reflectionPerm_coroot'}
+\uses{lemma:pairing_formula,lemma:s_is_refl_on_alpha}
+\leanok
+For all $J,K\in I_n\times\{\pm1\}$,
+\[
+    \alpha_{s_J(K)}^\vee
+    =
+    \alpha_K^\vee-\mathcal{L}(\alpha_J,\alpha_K^\vee)\alpha_J^\vee.
+\]
 \end{lemma}
 \begin{proof}
-    First assume that $J=[i,j]$ and $K=[k,l]$ are positive intervals, and set
-    $c=\mathcal{L}(\alpha_J,\alpha^\vee_K)$. Since $A$ is symmetric, the endpoint computation in the proof of
-    Lemma \ref{lemma:s_is_refl_on_alpha} gives the same value
-    \[
-        c=\delta_{i,k}+\delta_{j,l}-\delta_{i,l+1}-\delta_{j,k-1}.
-    \]
-    The case table in that proof used only additivity of sums over intervals. Replacing each $A e_r$ by
-    $e_r^*$ in the last column gives
-    \[
-        \alpha^\vee_{s_J(K)}=\alpha^\vee_K-c\alpha^\vee_J
-    \]
-    for positive intervals.
-
-    For general signed intervals, write $J=\varepsilon J_0$ and $K=\delta K_0$, with
-    $J_0,K_0\in I_n$ and $\varepsilon,\delta\in\{\pm 1\}$. Using
-    $s_{\varepsilon J_0}(\delta K_0)=\delta s_{J_0}(K_0)$ and
-    $\mathcal{L}(\alpha_J,\alpha^\vee_K)=\varepsilon\delta\mathcal{L}(\alpha_{J_0},\alpha^\vee_{K_0})$,
-    the positive case gives
-    \begin{align*}
-        \alpha^\vee_{s_J(K)}
-        &= \delta\alpha^\vee_{s_{J_0}(K_0)}\\
-        &= \delta\bigl(\alpha^\vee_{K_0}
-            -\mathcal{L}(\alpha_{J_0},\alpha^\vee_{K_0})\alpha^\vee_{J_0}\bigr)\\
-        &= \alpha^\vee_K-\mathcal{L}(\alpha_J,\alpha^\vee_K)\alpha^\vee_J.
-    \end{align*}
+For positive intervals, symmetry of the type $A$ Cartan matrix gives the
+same endpoint value for $\mathcal{L}(\alpha_J,\alpha_K^\vee)$ as in the
+proof of Lemma \ref{lemma:s_is_refl_on_alpha}. The case table there used
+only additivity of sums over adjacent or nested intervals. Replacing each
+$Ae_r$ by $e_r^*$ in that table gives the desired coroot identity for
+positive intervals. The signed case follows by the same sign reduction as
+in Lemma \ref{lemma:s_is_refl_on_alpha}.
 \end{proof}
 
 \begin{theorem}\label{thm:root_pairing_of_type_A}
-    \uses{def:root_pairing,lemma:alpha_and_alpha_dual_injective,lemma:alpha_dual_alpha_is_two,lemma:s_J_are_permutations,lemma:s_is_refl_on_alpha,lemma:s_is_refl_on_alpha_dual}
-    Fix $n \in \mathbb{Z}_{>0}$, $R = \mathbb{Z}$, $M = \mathbb{Z}^n$ and
-    $N = (\mathbb{Z}^n)^*$. Let $\mathcal{L}$ be the canonical pairing,
-    let $I = I_n\times \{\pm 1\}$ be the set of signed intervals, let $\alpha$ and $\alpha^\vee$ be as in
-    (\ref{eq:alpha_definition}) and (\ref{eq:alpha_dual_definition}) respectively, and let $s$
-    be as in (\ref{eq:s_J_definition}). Then the 8-tuple
-    $\left(R, M, N, \mathcal{L}, I, \alpha, \alpha^{\vee}, s\right)$ is a root pairing.
+\lean{An}
+\uses{def:root_pairing,lemma:alpha_and_alpha_dual_injective,lemma:alpha_dual_alpha_is_two,lemma:s_J_are_permutations,lemma:s_is_refl_on_alpha,lemma:s_is_refl_on_alpha_dual}
+\leanok
+Fix $n\in\mathbb{Z}_{>0}$, and let
+\[
+    R=\mathbb{Z},\qquad M=\mathbb{Z}^n,\qquad N=(\mathbb{Z}^n)^*.
+\]
+Let $\mathcal{L}$ be the canonical pairing, let
+$I=I_n\times\{\pm1\}$ be the set of signed intervals, let $\alpha$ and
+$\alpha^\vee$ be as in \eqref{eq:alpha_definition} and
+\eqref{eq:alpha_dual_definition}, and let $s$ be as in
+\eqref{eq:s_J_definition}. Then
+\[
+    (R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)
+\]
+is a root pairing.
 \end{theorem}
 \begin{proof}
-    The quadruple $(\mathbb{Z},\mathbb{Z}^n,(\mathbb{Z}^n)^*,\mathcal{L})$ is the standard perfect pairing
-    between a finite free $\mathbb{Z}$-module and its dual. It remains to verify the three extra conditions in
-    Definition \ref{def:root_pairing}.
+The quadruple
+$(\mathbb{Z},\mathbb{Z}^n,(\mathbb{Z}^n)^*,\mathcal{L})$ is the standard
+perfect pairing between a finite free $\mathbb{Z}$-module and its dual.
+It remains to verify the root-pairing axioms from Definition
+\ref{def:root_pairing}.
 
-    The maps $\alpha$ and $\alpha^\vee$ are injective by Lemma
-    \ref{lemma:alpha_and_alpha_dual_injective}. For every signed interval $J\in I$, Lemma
-    \ref{lemma:alpha_dual_alpha_is_two} gives $\mathcal{L}(\alpha_J,\alpha^\vee_J)=2$.
-    For every $J\in I$, Lemma \ref{lemma:s_J_are_permutations} gives $s_J\in {\rm Perm}(I)$.
-    Finally, for all $J,K\in I$, Lemmas \ref{lemma:s_is_refl_on_alpha} and
-    \ref{lemma:s_is_refl_on_alpha_dual} give
-    \[
-        \alpha_{s_J(K)}=\alpha_K-\mathcal{L}(\alpha_K,\alpha^\vee_J)\alpha_J
-        \quad\text{and}\quad
-        \alpha^\vee_{s_J(K)}=\alpha^\vee_K-\mathcal{L}(\alpha_J,\alpha^\vee_K)\alpha^\vee_J.
-    \]
-    These are precisely the axioms in Definition \ref{def:root_pairing}, so the stated 8-tuple is a root
-    pairing.
-\end{proof}
-
-\begin{proposition}
-    The root pairing defined in Theorem \ref{thm:root_pairing_of_type_A} is crystallographic, reduced and finite.
-\end{proposition}
-\begin{proof}
-    
-\end{proof}
-
-\begin{proposition}
-    Let $\Phi$ denote the root pairing constructed in 
-    Theorem \ref{thm:root_pairing_of_type_A}, and set 
-    $\Delta = \{[1], [2], \ldots , [n]\}$. Then $\Delta$ is an irreducible base of $\Phi$, 
-    and the pair $(\Phi, \Delta)$ is of type $A$.
-\end{proposition}
-\begin{proof}
-    
+The maps $\alpha$ and $\alpha^\vee$ are injective by Lemma
+\ref{lemma:alpha_and_alpha_dual_injective}. The identity
+$\mathcal{L}(\alpha_J,\alpha_J^\vee)=2$ is Lemma
+\ref{lemma:alpha_dual_alpha_is_two}. Lemma
+\ref{lemma:s_J_are_permutations} gives $s_J\in\operatorname{Perm}(I)$ for
+each $J$. Finally, Lemmas \ref{lemma:s_is_refl_on_alpha} and
+\ref{lemma:s_is_refl_on_alpha_dual} give the two reflection formulas.
+These are exactly the conditions in Definition \ref{def:root_pairing}.
 \end{proof}

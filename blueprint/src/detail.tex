@@ -1,0 +1,221 @@
+% Detailed proof expansion for the type A construction.
+% This file is intended as a Lean-facing companion to content.tex.
+
+\section{Detailed proofs for the type A root pairing}
+
+This note expands the proofs of Lemmas
+\ref{lemma:alpha_and_alpha_dual_injective},
+\ref{lemma:s_is_refl_on_alpha}, and
+\ref{lemma:s_is_refl_on_alpha_dual}.  The purpose is to isolate the
+small endpoint computations that are most convenient to translate into
+Lean.
+
+We write a signed interval as $J=\varepsilon [i,j]$, where
+$1\le i\le j\le n$ and $\varepsilon\in\{\pm1\}$.  Its sign is denoted
+$\operatorname{sgn}(J)=\varepsilon$.  If $J=\varepsilon[i,j]$ and
+$K=\delta[k,l]$, set
+\[
+  E(J,K)
+  =
+  \mathbf{1}_{i=k}+\mathbf{1}_{j=l}
+  -\mathbf{1}_{i=l+1}-\mathbf{1}_{k=j+1}.
+\]
+Thus, for unsigned intervals, $E([i,j],[k,l])$ is the endpoint expression
+appearing in the pairing formula.  For signed intervals,
+\[
+  \mathcal L(\alpha_K,\alpha_J^\vee)
+  =
+  \varepsilon\delta E(J,K).
+\]
+
+\begin{lemma}[Endpoint formula for the self-pairing]\label{lemma:detail_pairing_self}
+For every signed interval $J$,
+\[
+  \mathcal L(\alpha_J,\alpha_J^\vee)=2.
+\]
+\end{lemma}
+\begin{proof}
+Write $J=\varepsilon[i,j]$.  In the endpoint formula, the two positive
+terms are both equal to $1$, since $i=i$ and $j=j$.  The two negative
+terms are both $0$, since $i=j+1$ and $i=j+1$ are impossible when
+$i\le j$.  Hence $E(J,J)=2$.  Since $\varepsilon^2=1$, the signed
+pairing is also $2$.
+\end{proof}
+
+\begin{lemma}[The value $2$ detects the signed interval]\label{lemma:detail_pairing_eq_two}
+For signed intervals $J$ and $K$,
+\[
+  \mathcal L(\alpha_K,\alpha_J^\vee)=2
+  \quad\Longleftrightarrow\quad
+  K=J.
+\]
+\end{lemma}
+\begin{proof}
+Write $J=\varepsilon[i,j]$ and $K=\delta[k,l]$.  The endpoint expression
+$E(J,K)$ is the sum of two terms in $\{0,1\}$ minus two terms in
+$\{0,1\}$.  Therefore $E(J,K)\le 2$.  If
+$\varepsilon\delta E(J,K)=2$, then necessarily
+$\varepsilon\delta=1$ and $E(J,K)=2$, because $E(J,K)$ cannot be less
+than or equal to $-2$ in a way that contributes $2$: the two negative
+endpoint conditions $i=l+1$ and $k=j+1$ cannot hold simultaneously with
+$i\le j$ and $k\le l$.
+
+Now $E(J,K)=2$ forces both positive endpoint terms to be $1$ and both
+negative terms to be $0$.  Hence $i=k$ and $j=l$.  From
+$\varepsilon\delta=1$ and $\varepsilon,\delta\in\{\pm1\}$ we get
+$\varepsilon=\delta$.  Thus $J=K$.
+
+Conversely, if $K=J$, Lemma \ref{lemma:detail_pairing_self} gives the
+pairing value $2$.
+\end{proof}
+
+\begin{lemma}[Injectivity of $\alpha$]\label{lemma:detail_alpha_injective}
+The map $\alpha$ is injective.
+\end{lemma}
+\begin{proof}
+Assume $\alpha_J=\alpha_K$.  Pair both sides with $\alpha_J^\vee$.
+Using Lemma \ref{lemma:detail_pairing_self} on the left gives
+\[
+  2
+  =
+  \mathcal L(\alpha_J,\alpha_J^\vee)
+  =
+  \mathcal L(\alpha_K,\alpha_J^\vee).
+\]
+By Lemma \ref{lemma:detail_pairing_eq_two}, this implies $K=J$.
+\end{proof}
+
+\begin{lemma}[Injectivity of $\alpha^\vee$]\label{lemma:detail_alpha_dual_injective}
+The map $\alpha^\vee$ is injective.
+\end{lemma}
+\begin{proof}
+Write $J=\varepsilon[i,j]$ and $K=\delta[k,l]$, and suppose
+$\alpha_J^\vee=\alpha_K^\vee$.  Evaluating the two linear forms on the
+standard basis vector $e_r$ gives
+\[
+  \varepsilon\mathbf{1}_{i\le r\le j}
+  =
+  \delta\mathbf{1}_{k\le r\le l}
+  \qquad\text{for every }r.
+\]
+Therefore the supports $[i,j]$ and $[k,l]$ are equal as subsets of
+$[1,n]$.  Since intervals are determined by their support, $i=k$ and
+$j=l$.  Evaluating at $r=i$ then gives $\varepsilon=\delta$.  Thus
+$J=K$.
+\end{proof}
+
+We now turn to the reflection formulas.  The following two elementary
+sum identities are used repeatedly.  Let $B_r$ denote either $A e_r$ or
+$e_r^\ast$.  For intervals with the indicated endpoint relations,
+\[
+\begin{array}{rcll}
+  \sum_{r=k}^{l}B_r-2\sum_{r=k}^{l}B_r
+    &=&-\sum_{r=k}^{l}B_r,
+      &(i,j)=(k,l),\\
+  \sum_{r=k}^{l}B_r-\sum_{r=k}^{j}B_r
+    &=&-\sum_{r=l+1}^{j}B_r,
+      &i=k,\ j>l,\\
+  \sum_{r=k}^{l}B_r-\sum_{r=k}^{j}B_r
+    &=&\sum_{r=j+1}^{l}B_r,
+      &i=k,\ j<l,\\
+  \sum_{r=k}^{l}B_r-\sum_{r=i}^{l}B_r
+    &=&-\sum_{r=i}^{k-1}B_r,
+      &i<k,\ j=l,\\
+  \sum_{r=k}^{l}B_r-\sum_{r=i}^{l}B_r
+    &=&\sum_{r=k}^{i-1}B_r,
+      &i>k,\ j=l,\\
+  \sum_{r=k}^{l}B_r+\sum_{r=l+1}^{j}B_r
+    &=&\sum_{r=k}^{j}B_r,
+      &i=l+1,\\
+  \sum_{r=k}^{l}B_r+\sum_{r=i}^{j}B_r
+    &=&\sum_{r=i}^{l}B_r,
+      &k=j+1.
+\end{array}
+\]
+All are just additivity of sums over adjacent or nested intervals.
+
+\begin{lemma}[Root reflection, coordinate form]\label{lemma:detail_root_reflection_eval}
+For all signed intervals $J,K$ and all coordinates $t$,
+\[
+  \bigl(\alpha_K-\mathcal L(\alpha_K,\alpha_J^\vee)\alpha_J\bigr)(t)
+  =
+  \alpha_{s_J(K)}(t).
+\]
+\end{lemma}
+\begin{proof}
+First suppose $J=[i,j]$ and $K=[k,l]$ are positive.  The endpoint
+formula gives
+\[
+  c:=\mathcal L(\alpha_K,\alpha_J^\vee)
+  =
+  \mathbf{1}_{i=k}+\mathbf{1}_{j=l}
+  -\mathbf{1}_{i=l+1}-\mathbf{1}_{k=j+1}.
+\]
+Now split into the eight cases in the definition of $s_{[i,j]}[k,l]$.
+In each case the above formula gives the value of $c$ shown below, and
+the sum identities immediately identify the right signed interval:
+\[
+\begin{array}{c|c|c}
+\text{case} & c & \alpha_K-c\alpha_J \\ \hline
+(i,j)=(k,l) & 2 & -\alpha_{[k,l]}\\
+i=k,\ j>l & 1 & -\alpha_{[l+1,j]}\\
+i=k,\ j<l & 1 & \alpha_{[j+1,l]}\\
+i<k,\ j=l & 1 & -\alpha_{[i,k-1]}\\
+i>k,\ j=l & 1 & \alpha_{[k,i-1]}\\
+i=l+1 & -1 & \alpha_{[k,j]}\\
+k=j+1 & -1 & \alpha_{[i,l]}\\
+\text{otherwise} & 0 & \alpha_{[k,l]}.
+\end{array}
+\]
+This is exactly the case distinction defining $s_J(K)$.
+
+For arbitrary signs, write $J=\varepsilon J_0$ and $K=\delta K_0$.
+The definition gives $s_{\varepsilon J_0}(\delta K_0)=\delta s_{J_0}(K_0)$,
+and bilinearity gives
+\[
+  \mathcal L(\alpha_{\delta K_0},\alpha_{\varepsilon J_0}^\vee)
+  =
+  \delta\varepsilon
+  \mathcal L(\alpha_{K_0},\alpha_{J_0}^\vee).
+\]
+Multiplying the positive-interval identity by $\delta$ gives the desired
+signed identity.
+\end{proof}
+
+\begin{lemma}[Coroot reflection, coordinate evaluation form]\label{lemma:detail_coroot_reflection_apply}
+For all signed intervals $J,K$ and every coordinate vector $e_t\in\mathbb Z^n$,
+\[
+  \bigl(\alpha_K^\vee-\mathcal L(\alpha_J,\alpha_K^\vee)\alpha_J^\vee\bigr)(e_t)
+  =
+  \alpha_{s_J(K)}^\vee(e_t).
+\]
+\end{lemma}
+\begin{proof}
+For positive intervals, the same endpoint computation gives
+\[
+  \mathcal L(\alpha_J,\alpha_K^\vee)
+  =
+  \mathbf{1}_{i=k}+\mathbf{1}_{j=l}
+  -\mathbf{1}_{i=l+1}-\mathbf{1}_{k=j+1},
+\]
+using symmetry of the type $A$ Cartan matrix.  Replace $B_r=Ae_r$ by
+$B_r=e_r^\ast$ in the seven sum identities above.  Since
+$\alpha^\vee_{[a,b]}=\sum_{r=a}^b e_r^\ast$, the same eight-case table
+proves
+\[
+  \bigl(\alpha_K^\vee-\mathcal L(\alpha_J,\alpha_K^\vee)\alpha_J^\vee\bigr)(e_t)
+  =
+  \alpha_{s_J(K)}^\vee(e_t)
+\]
+for positive intervals and every coordinate $t$.  The signed case is
+identical to the signed reduction in Lemma
+\ref{lemma:detail_root_reflection_eval}.
+\end{proof}
+
+Consequently Lemmas \ref{lemma:s_is_refl_on_alpha} and
+\ref{lemma:s_is_refl_on_alpha_dual} follow by function extensionality
+from Lemmas \ref{lemma:detail_root_reflection_eval} and
+\ref{lemma:detail_coroot_reflection_apply}, respectively.  In the coroot
+case, function extensionality is the usual dual-basis extensionality:
+two elements of $(\mathbb Z^n)^*$ are equal once they agree on every
+coordinate vector $e_t$.
