@@ -6,8 +6,8 @@
 % If you want to split the blueprint content into several files then
 % the current file can be a simple sequence of \input. Otherwise It
 % can start with a \section or \chapter for instance.
-\section{Root pairings}
-\subsection{Definitions}
+\chapter{Root pairings}
+\section{Definitions}
 Recall that a {\it perfect pairing} is a quadruple $(R,M,N,\mathcal{L})$ where $R$ is a ring, $M$ and $N$ are $R$-modules,
 and $\mathcal{L}: M \times N \to R$ is a bilinear map such that the induced maps
 $M \to \text{Hom}_R(N,R)$ and $N \to \text{Hom}_R(M,R)$ are isomorphisms of $R$-modules.
@@ -30,7 +30,8 @@ If $I$ is a set, denote by $\text{Perm}(I)$ the group of permutations of $I$.
 \end{definition}
 
 
-\subsection{Root pairing of type A}
+\section{Root pairing of type A}
+\subsection{Construction}
 Consider the perfect pairing $(R,M,N,\mathcal{L}) = (\mathbb{Z}, \mathbb{Z}^n, (\mathbb{Z}^n)^*, (\cdot , \cdot))$ where $(\cdot , \cdot)$ is the
 canonical pairing between $\mathbb{Z}^n$ and its algebraic dual $(\mathbb{Z}^n)^* := {\rm Hom}_{\mathbb{Z}}(\mathbb{Z}^n, \mathbb{Z})$, i.e.
 the dot product.
@@ -296,3 +297,14 @@ We extend $s$ to $I_n\times \{\pm 1\}$ by setting $s_{-J} = s_J$ for all $J \in 
     These are precisely the axioms in Definition \ref{def:root_pairing}, so the stated 8-tuple is a root
     pairing.
 \end{proof}
+
+\subsection{Properties}
+\begin{enumerate}
+    \item Crystallographic root pairing
+    \item Reduced root pairing
+    \item Finite root pairing
+    \item Irreducible root pairing
+    \item Base of a root pairing
+    \item Cartan matrix of a root pairing
+    \item Type of a reduced, finite, irreducible crystallographic root pairing
+\end{enumerate}
