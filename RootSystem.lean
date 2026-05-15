@@ -1,2 +1,2 @@
-import RootSystem.An.Basic
-import RootSystem.Basic
+import RootSystem.An.Properties
+import RootSystem..An.Construction
