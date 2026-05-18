@@ -6,7 +6,7 @@
 \section{Definitions}
 
 Recall that a \emph{perfect pairing} is a quadruple $(R,M,N,\mathcal{L})$ where
-$R$ is a ring, $M$ and $N$ are $R$-modules, and
+$R$ is a commutative ring, $M$ and $N$ are $R$-modules, and
 $\mathcal{L}:M\times N\to R$ is a bilinear map such that the induced maps
 $M\to \operatorname{Hom}_R(N,R)$ and $N\to \operatorname{Hom}_R(M,R)$ are
 isomorphisms of $R$-modules. If $I$ is a set, denote by
@@ -260,7 +260,7 @@ $s_J\in\operatorname{Perm}(I_n\times\{\pm1\})$.
 \end{lemma}
 \begin{proof}
     \leanok
-A direct case check from \eqref{eq:s_J_interval_definition} shows that
+A direct case check from (\ref{eq:s_J_interval_definition}) shows that
 $s_J(s_J(K))=K$ for every signed interval $K$. Hence $s_J$ is its own
 inverse, and therefore a permutation.
 \end{proof}
@@ -287,7 +287,7 @@ $c=\mathcal{L}(\alpha_K,\alpha_J^\vee)$. Lemma
     -\delta_{i,l+1}
     -\delta_{k,j+1}.
 \]
-Comparing this value with \eqref{eq:s_J_interval_definition} gives:
+Comparing this value with (\ref{eq:s_J_interval_definition}) gives:
 \[
 \begin{array}{c|c|c}
 \text{condition} & c & \alpha_K-c\alpha_J \\ \hline
@@ -347,9 +347,9 @@ Fix $n\in\mathbb{Z}_{>0}$, and let
 \]
 Let $\mathcal{L}$ be the canonical pairing, let
 $I=I_n\times\{\pm1\}$ be the set of signed intervals, let $\alpha$ and
-$\alpha^\vee$ be as in \eqref{eq:alpha_definition} and
-\eqref{eq:alpha_dual_definition}, and let $s$ be as in
-\eqref{eq:s_J_definition}. Then
+$\alpha^\vee$ be as in (\ref{eq:alpha_definition}) and
+(\ref{eq:alpha_dual_definition}), and let $s$ be as in
+(\ref{eq:s_J_definition}). Then
 \[
     (R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)
 \]
@@ -373,7 +373,7 @@ each $J$. Finally, Lemmas \ref{lemma:s_is_refl_on_alpha} and
 These are exactly the conditions in Definition \ref{def:root_pairing}. This proves 
 the tuple is a root pairing. It is finite because $I$ is finite, crystallographic by 
 Lemma \ref{lemma:pairing_formula}, and reduced by 
-\eqref{eq:alpha_definition} and \eqref{eq:alpha_dual_definition}.
+(\ref{eq:alpha_definition}) and (\ref{eq:alpha_dual_definition}).
 \end{proof}
 
 \section{Types B and C}
@@ -382,12 +382,8 @@ Lemma \ref{lemma:pairing_formula}, and reduced by
 
 \section{Exceptional types}
 
-\chapter{Root systems}
-\begin{definition}\label{def:root_system}
-    A root pairing $(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ is called a 
-    {\it root system} if the sets $\{\alpha_i:i\in I\}$ and $\{\alpha_i^\vee:i\in I\}$ 
-    span the modules $M$ and $N$, respectively.
-\end{definition}
+\chapter{Root pairings of finite type}
+
 
 
 \begin{definition}\label{def:root_pairing_base}
@@ -422,14 +418,14 @@ $k\in\mathbb{Z}_{>0}$ and $a_1,\ldots,a_k\in\Delta$ such that:
     \item $\mathcal{L}(\alpha_{a_r},\alpha_{a_{r+1}}^\vee)\ne0$ for every
     $1\le r<k$.
 \end{enumerate}
-By definition, a root system admitting an irreducible base is called \emph{irreducible}.
+By definition, a root pairing admitting an irreducible base is called \emph{irreducible}.
 \end{definition}
 
 \begin{definition}\label{def:cartan_type}
 \lean{CartanMatrix.A, CartanMatrix.B, CartanMatrix.C, CartanMatrix.D, CartanMatrix.E₆, CartanMatrix.E₇, CartanMatrix.E₈}
-\uses{def:root_pairing_base,def:root_system,def:irreducible_base}
+\uses{def:root_pairing_base,def:irreducible_base}
 \leanok
-Fix a finite, crystallographic, reduced and irreducible root system 
+Fix a finite, crystallographic, reduced and irreducible root pairing 
 $\Phi=(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ and a
 base $\Delta\subset I$. The pair $(\Phi,\Delta)$ is said to be of:
 \begin{enumerate}
@@ -473,14 +469,13 @@ base $\Delta\subset I$. The pair $(\Phi,\Delta)$ is said to be of:
 \end{enumerate}
 \end{definition}
 
-We now prove that the root pairings constructed in \S \ref{chapter:constructions} exhaust all the root system types 
-given in Definition \ref{def:cartan_type}. A celebrated theorem of Cartan and Killing states that every finite, crystallographic, 
-reduced and irreducible root system is of exactly one of the types in Definition \ref{def:cartan_type}. 
+We now prove that the root pairings constructed in \S \ref{chapter:constructions} exhaust all the root pairing types 
+given in Definition \ref{def:cartan_type}. 
 
 \begin{theorem}
     \uses{thm:root_pairing_of_type_A,def:cartan_type}
 Set $\Delta = \{[i] : i \in \{1,\ldots, n\}\}$. The pair $(\Phi,\Delta)$ where $\Phi$ is 
-the root pairing constructed in Theorem \ref{thm:root_pairing_of_type_A} is a root system of type $A$.    
+the root pairing constructed in Theorem \ref{thm:root_pairing_of_type_A} is a root pairing of type $A$.    
 \end{theorem}
 \begin{proof}
     
