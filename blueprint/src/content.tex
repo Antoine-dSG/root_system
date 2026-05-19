@@ -16,12 +16,18 @@ $\operatorname{Perm}(I)$ the group of permutations of $I$.
 \lean{RootPairing}
 \leanok
 A \emph{root pairing} is a tuple
-$(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ where
-$(R,M,N,\mathcal{L})$ is a perfect pairing, $I$ is a set,
-$\alpha:I\to M$, $i\mapsto \alpha_i$,
-$\alpha^\vee:I\to N$, $i\mapsto \alpha_i^\vee$, and
-$s:I\to \operatorname{Perm}(I)$, $i\mapsto s_i$, satisfying:
-\begin{enumerate}
+$(R,M,N,\mathcal{L},I,\alpha,\alpha^\vee,s)$ where:
+\begin{itemize}
+    \item $(R,M,N,\mathcal{L})$ is a perfect pairing,
+    \item $I$ is a set,
+    \item The maps 
+    \begin{align*}
+        \alpha:&\; I\to M, \quad i\mapsto \alpha_i, \\
+        \alpha^\vee:&\; I\to N, \quad i\mapsto \alpha_i^\vee, \\
+        s:&\; I\to \operatorname{Perm}(I), \quad i\mapsto s_i,
+    \end{align*}
+    are such that
+    \begin{enumerate}
     \item $\alpha$ and $\alpha^\vee$ are injective,
     \item for all $i\in I$, $\mathcal{L}(\alpha_i,\alpha_i^\vee)=2$,
     \item for all $i,j\in I$,
@@ -31,7 +37,9 @@ $s:I\to \operatorname{Perm}(I)$, $i\mapsto s_i$, satisfying:
         \alpha_{s_i(j)}^\vee
             &=\alpha_j^\vee-\mathcal{L}(\alpha_i,\alpha_j^\vee)\alpha_i^\vee.
     \end{align*}
-\end{enumerate}
+\end{enumerate} 
+\end{itemize}
+
 \end{definition}
 
 \begin{definition}\label{def:root_pairing_properties}
@@ -76,7 +84,7 @@ A \emph{signed interval} in $[1,n]$ is an element of
 $I_n\times\{\pm1\}$. We identify $J\in I_n$ with $(J,1)$ and write
 $-J$ for $(J,-1)$.
 
-Let $A=\mathcal{A}_n=(a_{u,r})$ be the $n\times n$ integer matrix defined by
+Let $A=(a_{u,r})$ be the $n\times n$ integer matrix defined by
 \[
     a_{u,r}=
     \begin{cases}
@@ -118,7 +126,7 @@ Let $J=\varepsilon[i,j]$ and $K=\delta[k,l]$ be signed intervals. Then
 \end{lemma}
 \begin{proof}
     \leanok
-It is enough to treat positive intervals, since the signs factor out by
+It is enough to consider $J,K \in I_n$, since the signs factor out by
 bilinearity. For fixed $r$, the vector $Ae_r$ has coefficient $2$ in
 coordinate $r$, coefficient $-1$ in the adjacent coordinates $r-1$ and
 $r+1$, and coefficient $0$ elsewhere. Hence, for $u\in[1,n]$,
@@ -339,7 +347,7 @@ in Lemma \ref{lemma:s_is_refl_on_alpha}.
 
 \begin{theorem}\label{thm:root_pairing_of_type_A}
 \lean{An}
-\uses{def:root_pairing,lemma:alpha_and_alpha_dual_injective,lemma:alpha_dual_alpha_is_two,lemma:s_J_are_permutations,lemma:s_is_refl_on_alpha,lemma:s_is_refl_on_alpha_dual}
+\uses{def:root_pairing,lemma:alpha_and_alpha_dual_injective,lemma:alpha_dual_alpha_is_two,lemma:s_J_are_permutations,lemma:s_is_refl_on_alpha,lemma:s_is_refl_on_alpha_dual,An_is_finite, An_is_crystallographic,An_is_reduced}
 \leanok
 Fix $n\in\mathbb{Z}_{>0}$, and let
 \[
